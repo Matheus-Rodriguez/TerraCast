@@ -1,0 +1,204 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <title>TerraCast - Predict today to protect tomorrow</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            background-color: #222;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 22px;
+        }
+
+        /* Navbar (copiado do primeiro template) */
+        .navbar {
+            display: flex;
+            align-items: center;
+            height: 80px;
+            background-color: #222;
+            padding: 0 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .nav-content {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            gap: 90px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0px; /* igual ao primeiro */
+        }
+
+        .logo-container img {
+            height: 55px; /* igual ao primeiro */
+            width: auto;
+        }
+
+        .logo-container h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: bold;
+            white-space: nowrap;
+            color: white; /* removendo vermelho, definindo branco */
+        }
+
+        .navbar a {
+            position: relative;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0 5px;
+            white-space: nowrap;
+            transition: color 0.3s ease;
+            flex-grow: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .navbar a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 0;
+            height: 2px;
+            background-color: #ff6666;
+            transition: width 0.3s ease;
+        }
+
+        .navbar a:hover {
+            color: #ff6666;
+        }
+
+        .navbar a:hover::after {
+            width: 100%;
+        }
+
+        /* Conteúdo */
+        .content {
+            padding: 60px 80px;
+            line-height: 2.4;
+            text-align: center;
+            min-height: 160vh;
+        }
+
+        h1, h2, p, li {
+            animation: fadeMoveUp 1s ease forwards;
+        }
+
+        @keyframes fadeMoveUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            color: #ff6666;
+            margin-bottom: 50px;
+            font-size: 4rem;
+            animation-delay: 0s;
+        }
+
+        h2 {
+            color: #ff6666;
+            margin-top: 80px;
+            margin-bottom: 30px;
+            font-size: 3rem;
+            animation-delay: 0.3s;
+        }
+
+        p {
+            max-width: 900px;
+            margin: 0 auto 50px auto;
+            text-align: center;
+            font-size: 1.5rem;
+            animation-delay: 0.6s;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 0;
+            max-width: 900px;
+            margin: 0 auto 50px auto;
+        }
+
+        ul li {
+            text-align: left;
+            margin-left: 40px;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            animation-delay: 0.9s;
+        }
+
+        a.content-link {
+            color: #ff6666;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.5rem;
+            animation-delay: 1.2s;
+            display: inline-block;
+            animation: fadeMoveUp 1s ease forwards;
+        }
+
+        a.content-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo-container">
+                <img src="{% static 'logo.png' %}" alt="Logo TerraCast">
+                <h1>TerraCast</h1>
+            </div>
+            <a href="{% url 'mapa_plotly' 'pred_3anyviolence_06_2025.csv' %}">Insurgency 3 months</a>
+            <a href="{% url 'mapa_plotly' 'pred12anyviolence_06_2025.csv' %}">Insurgency 12 months</a>
+            <a href="{% url 'mapa_plotly' 'pred_3armedconf_06_2025.csv' %}">Conflict 3 months</a>
+            <a href="{% url 'mapa_plotly' 'pred12armedconf_06_2025.csv' %}">Conflict 12 months</a>
+            <a href="{% url 'model' %}">Model</a> 
+            <a href="{% url 'about' %}">About</a>
+        </div>
+    </nav>
+
+    <div class="content">
+        <h1>About TerraCast</h1>
+        <p><em>Predict today to protect tomorrow.</em></p>
+
+        <p>TerraCast is a predictive intelligence platform specialized in anticipating armed conflicts and geopolitical instabilities on a global scale. Using advanced Artificial Intelligence technologies, statistical modeling, and machine learning, we transform complex data into actionable strategic insights.</p>
+
+        <p>Our system analyzes thousands of indicators — from economic, social, and political data to environmental and behavioral variables — to identify risk patterns and forecast conflict scenarios up to 12 months in advance. These predictions assist governments, international organizations, security companies, and humanitarian agencies in making informed decisions, reducing uncertainties, and saving lives.</p>
+
+        <h2>Our Mission</h2>
+        <p>To anticipate crises before they become tragedies. To provide data-driven intelligence to promote a safer, more transparent, and better-prepared world.</p>
+
+        <h2>Our Vision</h2>
+        <p>To be the world’s leading reference in predictive geopolitical risk technology, contributing to conflict prevention and the construction of sustainable peace strategies.</p>
+
+        <h2>Our Differentials</h2>
+        <ul>
+            <li>Proprietary AI models calibrated with historical data and updated.</li>
+            <li>Global coverage, with subnational forecasts and interactive risk maps.</li>
+            <li>Multidisciplinary team, with researchers in data science, international politics, and security.</li>
+            <li>Integration with open sources, financial indexes, media, and generative AI for automated report production.</li>
+        </ul>
+
+    </div>
+</body>
+</html>

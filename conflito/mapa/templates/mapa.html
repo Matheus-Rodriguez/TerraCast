@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <title>TerraCast - Predict today to protect tomorrow</title>
+    
+    <!-- Fonte -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+    
+    <style>
+        body {
+            margin: 0;
+            background-color: #222;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            font-size: 22px;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            height: 80px;
+            background-color: #222;
+            padding: 0 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .nav-content {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            gap: 60px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0px;
+        }
+
+        .logo-container img {
+            height: 55px;
+            width: auto;
+        }
+
+        .logo-container h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .navbar a {
+            position: relative;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0 5px;
+            white-space: nowrap;
+            transition: color 0.3s ease;
+            flex-grow: 0;
+            font-family: 'Poppins', sans-serif;
+            font-size: 22px;
+        }
+
+        .navbar a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 0;
+            height: 2px;
+            background-color: #ff6666;
+            transition: width 0.3s ease;
+        }
+
+        .navbar a:hover {
+            color: #ff6666;
+        }
+
+        .navbar a:hover::after {
+            width: 100%;
+        }
+
+        #grafico {
+            height: calc(100vh - 80px);
+            width: 100%;
+        }
+
+        .plotly-graph-div {
+            height: 100% !important;
+            width: 100% !important;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo-container">
+                <img src="{% static 'logo.png' %}" alt="Logo TerraCast">
+                <h1>TerraCast</h1>
+            </div>
+            <a href="{% url 'mapa_plotly' 'pred_3anyviolence_06_2025.csv' %}">Insurgency 3 months</a>
+            <a href="{% url 'mapa_plotly' 'pred12anyviolence_06_2025.csv' %}">Insurgency 12 months</a>
+            <a href="{% url 'mapa_plotly' 'pred_3armedconf_06_2025.csv' %}">Conflict 3 months</a>
+            <a href="{% url 'mapa_plotly' 'pred12armedconf_06_2025.csv' %}">Conflict 12 months</a>
+            <a href="{% url 'mapa_plotly' 'pred_12__off_period.csv' %}">Conflict Month</a>
+            <a href="{% url 'model' %}">Model</a> 
+            <a href="{% url 'about' %}">About</a>
+        </div>
+    </nav>
+    <div id="grafico">
+        {{ plot_html|safe }}
+    </div>
+</body>
+</html>
