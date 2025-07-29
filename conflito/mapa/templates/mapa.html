@@ -4,10 +4,10 @@
 <head>
     <meta charset="utf-8" />
     <title>TerraCast - Predict today to protect tomorrow</title>
-    
+
     <!-- Fonte -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
-    
+
     <style>
         body {
             margin: 0;
@@ -95,6 +95,25 @@
             height: 100% !important;
             width: 100% !important;
         }
+
+        .button-link {
+            display: inline-block;
+            background-color: #ff6666;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            margin-bottom: 30px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .button-link:hover {
+            background-color: #e05555;
+        }
     </style>
 </head>
 <body>
@@ -104,11 +123,11 @@
                 <img src="{% static 'logo.png' %}" alt="Logo TerraCast">
                 <h1>TerraCast</h1>
             </div>
-            <a href="{% url 'mapa_plotly' 'pred_3anyviolence_06_2025.csv' %}">Insurgency 3 months</a>
-            <a href="{% url 'mapa_plotly' 'pred12anyviolence_06_2025.csv' %}">Insurgency 12 months</a>
-            <a href="{% url 'mapa_plotly' 'pred_3armedconf_06_2025.csv' %}">Conflict 3 months</a>
-            <a href="{% url 'mapa_plotly' 'pred12armedconf_06_2025.csv' %}">Conflict 12 months</a>
-            <a href="{% url 'mapa_plotly' 'pred_12__off_period.csv' %}">Conflict Month</a>
+            <a href="{% url 'mapa_plotly' 'pred_3_anyviolence__off_period.csv' %}">Insurgency 3 months</a>
+            <a href="{% url 'mapa_plotly' 'pred_12_anyviolence__off_period.csv' %}">Insurgency 12 months</a>
+            <a href="{% url 'mapa_plotly' 'pred_3__off_period.csv' %}">Conflict 3 months</a>
+            <a href="{% url 'mapa_plotly' 'pred_12__off_period.csv' %}">Conflict 12 months</a>
+            <a href="{% url 'report' %}">Report</a>
             <a href="{% url 'model' %}">Model</a> 
             <a href="{% url 'about' %}">About</a>
         </div>

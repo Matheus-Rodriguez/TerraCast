@@ -1,4 +1,4 @@
-isocode,y_pred_prob,period
+iso,pred,period
 AFG,0.94127184,201001
 AFG,0.94128114,201002
 AFG,0.9369636,201003
