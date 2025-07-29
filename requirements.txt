@@ -1,3 +1,5 @@
 django
 pandas
 plotly
+openai
+markdown
