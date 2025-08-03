@@ -1,7 +1,5 @@
-from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('mapa/', include('mapa.urls')),  # <-- Aqui
+    path('home/', include('mapa.urls')),
 ]

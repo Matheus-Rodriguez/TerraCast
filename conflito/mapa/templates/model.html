@@ -150,10 +150,10 @@
                 <img src="{% static 'logo.png' %}" alt="Logo TerraCast">
                 <h1>TerraCast</h1>
             </div>
-            <a href="{% url 'mapa_plotly' 'pred_3_anyviolence__off_period.csv' %}">Insurgency 3 months</a>
-            <a href="{% url 'mapa_plotly' 'pred_12_anyviolence__off_period.csv' %}">Insurgency 12 months</a>
-            <a href="{% url 'mapa_plotly' 'pred_3__off_period.csv' %}">Conflict 3 months</a>
-            <a href="{% url 'mapa_plotly' 'pred_12__off_period.csv' %}">Conflict 12 months</a>
+            <a href="{% url 'mapa_violence_3m' %}">Violence 3 months</a>
+            <a href="{% url 'mapa_violence_12m' %}">Violence 12 months</a>
+            <a href="{% url 'mapa_conflict_3m' %}">Conflict 3 months</a>
+            <a href="{% url 'mapa_conflict_12m' %}">Conflict 12 months</a>
             <a href="{% url 'report' %}">Report</a>
             <a href="{% url 'model' %}">Model</a> 
             <a href="{% url 'about' %}">About</a>

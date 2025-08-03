@@ -1,16 +1,20 @@
 import pandas as pd
 import plotly.express as px
 from django.shortcuts import render, redirect
-from django.http import Http404
-import os
+from django.http import Http404, HttpResponse
 from django.conf import settings
-import subprocess
 from django.views.decorators.csrf import csrf_exempt
-import markdown  # Import para converter Markdown em HTML
+from django.urls import reverse
+from django.template.loader import render_to_string
+from weasyprint import HTML
+import markdown
+import subprocess
+import os
+
 
 def processar_pais(pais):
-    # Função temporária para teste, substitua pela chamada real ao script OpenAI
     return f"Análise fictícia para o país: {pais}"
+
 
 def mapa_plotly(request, filename=None):
     arquivos_permitidos = {
@@ -21,7 +25,7 @@ def mapa_plotly(request, filename=None):
     }
 
     if filename is None:
-        filename = 'pred_3_anyviolence__off_period.csv'  # default
+        filename = 'pred_3_anyviolence__off_period.csv'
 
     if filename not in arquivos_permitidos:
         raise Http404("Arquivo não permitido.")
@@ -60,6 +64,7 @@ def mapa_plotly(request, filename=None):
     )
 
     fig.update_traces(marker_line_width=1, marker_line_color='black', showscale=True)
+
     fig.update_coloraxes(colorbar_title="risk")
 
     fig.update_geos(
@@ -101,11 +106,14 @@ def mapa_plotly(request, filename=None):
         "entrada": entrada,
     })
 
+
 def about_view(request):
     return render(request, "about.html")
 
+
 def model_view(request):
     return render(request, "model.html")
+
 
 @csrf_exempt
 def report_view(request):
@@ -124,23 +132,63 @@ def report_view(request):
                     check=True
                 )
                 md_text = resultado.stdout.strip()
-                resposta_html = markdown.markdown(md_text)  # converte Markdown para HTML
+                resposta_html = markdown.markdown(md_text)
 
             except subprocess.CalledProcessError as e:
                 resposta_html = f"<pre>Erro ao executar o script:\n{e.stderr.strip()}</pre>"
 
-            # Guarda resultado e entrada na sessão
             request.session['resposta'] = resposta_html
             request.session['entrada'] = entrada
 
-            # Redireciona para evitar re-execução no refresh
-            return redirect('report')
+            return redirect(reverse('resposta'))
 
-    else:  # GET
-        resposta_html = request.session.pop('resposta', '')
-        entrada = request.session.pop('entrada', '')
+    return render(request, "report.html")
 
-    return render(request, "report.html", {
-        "entrada": entrada,
+
+def resposta_view(request):
+    # Usa get() para manter os dados na sessão até o PDF ser baixado
+    resposta_html = request.session.get('resposta')
+    entrada = request.session.get('entrada')
+
+    if not resposta_html or not entrada:
+        return redirect(reverse('report'))
+
+    return render(request, "resposta.html", {
         "resposta": resposta_html,
+        "entrada": entrada,
+    })
+
+
+def baixar_pdf(request):
+    resposta_html = request.session.get('resposta')
+
+    if not resposta_html:
+        return redirect(reverse('report'))
+
+    contexto = {
+        'resposta': resposta_html,
+    }
+
+    html_string = render_to_string('pdf_template.html', contexto)
+    pdf_file = HTML(string=html_string).write_pdf()
+
+    # Limpa a sessão após gerar o PDF (opcional)
+    request.session.pop('resposta', None)
+    request.session.pop('entrada', None)
+
+    response = HttpResponse(pdf_file, content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="relatorio_analise.pdf"'
+    return response
+
+def resultado(request):
+    codigo = request.session.get('codigo_iso')
+    resposta = request.session.get('resposta')
+
+    # Verifique se o código é válido com base nos seus arquivos CSV:
+    codigos_validos = {"BRA", "COL", "PER", "MEX", "VEN"}  # Substitua pelos seus códigos reais
+    codigo_valido = codigo in codigos_validos
+
+    return render(request, 'resultado.html', {
+        'resposta': resposta,
+        'codigo_valido': codigo_valido
     })

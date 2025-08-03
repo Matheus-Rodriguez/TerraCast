@@ -1,18 +1,19 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt">
 <head>
-    <meta charset="utf-8" />
-    <title>TerraCast - Predict today to protect tomorrow</title>
+    <meta charset="UTF-8">
+    <title>TerraCast - Resultado da Análise</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
     <style>
         body {
             margin: 0;
             background-color: #222;
-            font-family: 'Poppins', sans-serif;
             color: white;
+            font-family: 'Poppins', sans-serif;
             font-size: 22px;
         }
+
         .navbar {
             display: flex;
             align-items: center;
@@ -24,27 +25,33 @@
             top: 0;
             z-index: 1000;
         }
+
         .navbar .nav-content {
             display: flex;
             align-items: center;
             width: 100%;
             gap: 60px;
         }
+
         .logo-container {
             display: flex;
             align-items: center;
             gap: 0px;
         }
+
         .logo-container img {
             height: 55px;
             width: auto;
         }
+
         .logo-container h1 {
             margin: 0;
             font-size: 24px;
             font-weight: bold;
             white-space: nowrap;
+            color: white;
         }
+
         .navbar a {
             position: relative;
             color: white;
@@ -55,8 +62,8 @@
             transition: color 0.3s ease;
             flex-grow: 0;
             font-family: 'Poppins', sans-serif;
-            font-size: 22px;
         }
+
         .navbar a::after {
             content: "";
             position: absolute;
@@ -67,44 +74,79 @@
             background-color: #ff6666;
             transition: width 0.3s ease;
         }
+
         .navbar a:hover {
             color: #ff6666;
         }
+
         .navbar a:hover::after {
             width: 100%;
         }
-        #grafico {
-            height: calc(100vh - 80px);
-            width: 100%;
+
+        .content {
+            padding: 60px 80px;
+            line-height: 2.2;
+            min-height: 100vh;
+            max-width: 1000px;
+            margin: 0 auto;
         }
-        .plotly-graph-div {
-            height: 100% !important;
-            width: 100% !important;
+
+        h1 {
+            color: #ff6666;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-align: center;
         }
-        .button-link {
+
+        .result-html {
+            background-color: transparent;
+            color: white;
+            border: none;
+            padding: 0;
+            white-space: normal;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        a.voltar {
             display: inline-block;
+            margin-top: 30px;
+            color: #ff6666;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        a.voltar:hover {
+            text-decoration: underline;
+        }
+
+        .btn-pdf {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 24px;
+            font-size: 1.1rem;
             background-color: #ff6666;
             color: white;
-            padding: 10px 20px;
+            border: none;
             border-radius: 8px;
+            cursor: pointer;
             text-decoration: none;
-            font-size: 20px;
             font-weight: bold;
             transition: background-color 0.3s ease;
-            margin-bottom: 30px;
-            border: none;
-            cursor: pointer;
         }
-        .button-link:hover {
-            background-color: #e05555;
+
+        .btn-pdf:hover {
+            background-color: #e64e4e;
         }
     </style>
 </head>
 <body>
+
     <nav class="navbar">
         <div class="nav-content">
             <div class="logo-container">
-                <img src="{% static 'logo.png' %}" alt="Logo TerraCast">
+                <img src="{% static 'logo.png' %}" alt="TerraCast Logo">
                 <h1>TerraCast</h1>
             </div>
             <a href="{% url 'mapa_violence_3m' %}">Violence 3 months</a>
@@ -116,8 +158,18 @@
             <a href="{% url 'about' %}">About</a>
         </div>
     </nav>
-    <div id="grafico">
-        {{ plot_html|safe }}
+
+    <div class="content">
+        <h1>Resultado da Análise</h1>
+        <div class="result-html">
+            {{ resposta|safe }}
+        </div>
+        <a class="voltar" href="{% url 'report' %}">← Nova análise</a><br>
+        
+        {% if resposta and "Erro" not in resposta and "❌" not in resposta %}
+            <a href="{% url 'baixar_pdf' %}" class="btn-pdf" target="_blank" rel="noopener noreferrer">📄 Baixar relatório em PDF</a>
+        {% endif %}
     </div>
+
 </body>
 </html>
