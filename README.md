@@ -7,17 +7,25 @@
 ```` 
 python3 -m venv terracast
 ```` 
-**Ative o virtual environment**
+**Ative o virtual environment (Linux)**
 ````
 source terracast/bin/activate
+````
+***Ative o virtual environment (Windows)***
+````
+./terracast/Scripts/activate
 ````
 **Em seguida instale os pacotes necessários**
 ```` 
 pip install -r requirements.txt
 ````
-**Para executar o site (vá para TerraCast/conflito)**
+**Para executar o site (vá para TerraCast/conflito) (Linux)**
 ````
 python3 manage.py runserver
+````
+***Para executar o site (vá para TerraCast/conflito) (Windows)***
+````
+python manage.py runserver
 ````
 **Por fim, abre o site no localhost na aba "mapa"**
 ```
@@ -27,5 +35,3 @@ http://127.0.0.1:8000/mapa/
 ```
 deactivate
 ```
-
-*Comandos para Linux, procure para Windows*
