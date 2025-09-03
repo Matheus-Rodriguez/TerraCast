@@ -1,6 +1,9 @@
 # TerraCast
 
-![Logo TerraCast](assets/logo.png)
+<p align="center">
+  <img src="assets/logo.png" alt="Logo TerraCast" width="500">
+</p>
+
 
 [![Python Version](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
