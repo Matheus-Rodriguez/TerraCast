@@ -41,7 +41,7 @@ def gerar_resposta_openai(iso):
 
     # Verifica se todos os resultados estão vazios
     if all(s.startswith("Sem dados disponíveis.") for s in [sample_12c, sample_3c, sample_12v, sample_3v]):
-        return f"❌ Nenhum dado disponível para o código ISO '{iso}'. Verifique se está correto (ex: BRA, COL, UKR)."
+        return f"❌ ERRO. Nenhum dado disponível para o código ISO '{iso}'. Verifique se está correto (ex: BRA, COL, UKR)."
 
     dados_atuais = f"""
 🔸 Conflito Armado (12 meses):\n{sample_12c}
@@ -73,7 +73,7 @@ Sempre que iniciar uma nova análise, cumprimente educadamente, pergunte como a 
 
 Use os dados recebidos para realizar análises políticas realistas e bem estruturadas. As previsões representam riscos de conflito armado e violência para 12 e 3 meses à frente da data `period`.
 
-Compare as previsões com os eventos reais que ocorreram no período previsto (ver coluna `data_prevista`). Cite fontes públicas se possível. Seja objetivo, humano e aberto a discussões adicionais. Continue conversando com base nos dados já fornecidos.
+Compare as previsões com os eventos reais que ocorreram no período previsto (ver coluna `data_prevista`). Cite fontes públicas se possível. Seja objetivo, humano e encerre a conversa.
         """},
         {"role": "user", "content": f"Nova análise para {iso}. Dados abaixo:\n{dados_atuais}"}
     ]

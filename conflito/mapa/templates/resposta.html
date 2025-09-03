@@ -166,7 +166,7 @@
         </div>
         <a class="voltar" href="{% url 'report' %}">← Nova análise</a><br>
         
-        {% if resposta and "Erro" not in resposta and "❌" not in resposta %}
+        {% if resposta and "ERRO" not in resposta %}
             <a href="{% url 'baixar_pdf' %}" class="btn-pdf" target="_blank" rel="noopener noreferrer">📄 Baixar relatório em PDF</a>
         {% endif %}
     </div>
