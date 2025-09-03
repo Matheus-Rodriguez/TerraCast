@@ -4,9 +4,9 @@
   <img src="assets/logo.png" alt="Logo TerraCast" width="500">
 </p>
 
-
 [![Python Version](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/)
-[![License: CC BY-NC](https://img.shields.io/badge/License-CC%20BY--NC-lightgrey.svg)](LICENSE)
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA-lightgrey.svg)](LICENSE)
+
 
 ---
 
@@ -48,6 +48,8 @@ Ser referência mundial em tecnologia de **risco geopolítico preditivo**, contr
 - Relatórios automatizados sobre previsões de conflito e violência.  
 - Modelos preditivos atualizados constantemente com novas fontes de dados.  
 
+---
+
 ## 🏠 Página Inicial / Home
 
 Ao acessar a plataforma TerraCast, você será recebido com um **mapa interativo de risco global**, destacando os níveis de violência e conflito em diferentes países.  
@@ -72,11 +74,13 @@ Ao acessar a plataforma TerraCast, você será recebido com um **mapa interativo
 
 > A página inicial serve como ponto de partida para explorar os mapas de risco e obter insights estratégicos de maneira visual e intuitiva.
 
-## 📄  Report
+---
+
+## 📄 Report
 
 A aba Report do TerraCast permite gerar análises detalhadas sobre o risco de conflitos armados e violência em diferentes países, utilizando inteligência artificial e dados históricos. O objetivo é fornecer uma visão objetiva e consistente para apoiar análises políticas e estratégicas.
 
-![Aba Report](assets/report.png)
+![Tela da aba Report mostrando relatório gerado](assets/report.png)
 
 ### 🔹 A funcionalidade principal
 
@@ -84,6 +88,18 @@ Geração de Relatórios Personalizados: Ao inserir o código ISO de um país (p
 
 ### 🔹 Download do relatório
 
-![Aba Report](assets/download.png)
+![Tela mostrando botão de download do relatório](assets/download.png)
 
-Após gerado o relatório, o usuário pode baixar em sua máquina o texto gerado pelo ChatGPT, pois uma vez feita a análise, ela será perdida no caso de um novo relatório a ser requisitado. Basta apertar o botão **"Baixar relatório em PDF"**
+Após gerado o relatório, o usuário pode baixar em sua máquina o texto gerado pelo ChatGPT, pois uma vez feita a análise, ela será perdida no caso de um novo relatório a ser requisitado. Basta apertar o botão **"Baixar relatório em PDF"**.
+
+---
+
+## 📜 License
+
+<p align="center">
+  <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+    <img src="http://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="200" alt="CC BY-NC-SA 4.0 License">
+  </a>
+</p>
+
+This project is licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](LICENSE).
