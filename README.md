@@ -36,7 +36,6 @@ Ser referência mundial em tecnologia de **risco geopolítico preditivo**, contr
 ## ✨ Diferenciais
 
 - Modelos proprietários de IA calibrados com dados históricos e atualizados.  
-- Cobertura global, com previsões subnacionais e mapas interativos de risco.  
 - Equipe multidisciplinar, com pesquisadores em ciência de dados, política internacional e segurança.  
 - Integração com fontes abertas, índices financeiros, mídias e IA generativa para **produção automatizada de relatórios**.
 
