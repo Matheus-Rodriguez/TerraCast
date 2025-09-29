@@ -37,13 +37,17 @@ def mapa_plotly(request, filename=None):
 
     df = pd.read_csv(caminho_csv)
 
-    def get_12_back(group):
-        if len(group) >= 12:
-            return group.iloc[-12]
+    # Determina quantos meses recuar com base no nome do arquivo
+    meses_recuar = 12 if '12' in filename else 3
+
+    def get_n_back(group):
+        # Pega o registro 'meses_recuar' antes do último
+        if len(group) >= meses_recuar:
+            return group.iloc[-(meses_recuar + 1)]
         else:
             return group.iloc[0]
 
-    df_agg = df.groupby('iso').apply(get_12_back).reset_index(drop=True)
+    df_agg = df.groupby('iso').apply(get_n_back).reset_index(drop=True)
 
     if 'pred' in df_agg.columns:
         coluna_prob = 'pred'
@@ -64,7 +68,6 @@ def mapa_plotly(request, filename=None):
     )
 
     fig.update_traces(marker_line_width=1, marker_line_color='black', showscale=True)
-
     fig.update_coloraxes(colorbar_title="risk")
 
     fig.update_geos(
@@ -85,17 +88,20 @@ def mapa_plotly(request, filename=None):
         plot_bgcolor='#222',
         font_color='white',
         margin=dict(l=0, r=0, t=30, b=0),
-        height=800,
         autosize=True,
     )
 
-    plot_html = fig.to_html(full_html=False)
+    plot_html = fig.to_html(
+        full_html=False,
+        include_plotlyjs='cdn',
+        config={'responsive': True}
+    )
 
     resultado = ""
     entrada = ""
 
     if request.method == "POST":
-        entrada = request.POST.get("pais_input", "").strip()
+        entrada = request.POST.get("pais_input", "").strip().upper()
         if entrada:
             resultado = processar_pais(entrada)
 
@@ -146,7 +152,6 @@ def report_view(request):
 
 
 def resposta_view(request):
-    # Usa get() para manter os dados na sessão até o PDF ser baixado
     resposta_html = request.session.get('resposta')
     entrada = request.session.get('entrada')
 
@@ -172,7 +177,6 @@ def baixar_pdf(request):
     html_string = render_to_string('pdf_template.html', contexto)
     pdf_file = HTML(string=html_string).write_pdf()
 
-    # Limpa a sessão após gerar o PDF (opcional)
     request.session.pop('resposta', None)
     request.session.pop('entrada', None)
 
@@ -180,13 +184,13 @@ def baixar_pdf(request):
     response['Content-Disposition'] = 'attachment; filename="relatorio_analise.pdf"'
     return response
 
+
 def resultado(request):
     codigo = request.session.get('codigo_iso')
     resposta = request.session.get('resposta')
 
-    # Verifique se o código é válido com base nos seus arquivos CSV:
-    codigos_validos = {"BRA", "COL", "PER", "MEX", "VEN"}  # Substitua pelos seus códigos reais
-    codigo_valido = codigo in codigos_validos
+    codigos_validos = {"BRA", "COL", "PER", "MEX", "VEN"}
+    codigo_valido = codigo in codigos_validos if codigo else False
 
     return render(request, 'resultado.html', {
         'resposta': resposta,
