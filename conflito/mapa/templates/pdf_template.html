@@ -12,33 +12,74 @@
             color: #222;
             margin: 30px;
             line-height: 1.6;
+            position: relative;
+            min-height: 100vh;
         }
+
         h1 {
             color: #ff6666;
             font-weight: 700;
             margin-bottom: 20px;
         }
+
         p {
             margin-bottom: 12px;
         }
-        /* Caso haja listas ou outros elementos html gerados */
+
         ul, ol {
             margin-left: 20px;
             margin-bottom: 15px;
         }
+
         a {
             color: #ff6666;
             text-decoration: none;
         }
+
         a:hover {
             text-decoration: underline;
+        }
+
+        /* Marca d'água */
+        body::before {
+            content: "TerraCast";
+            position: fixed;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-30deg);
+            font-size: 140px;  /* tamanho grande */
+            font-weight: bold;
+            color: rgba(200, 200, 200, 0.12); /* leve transparência */
+            white-space: nowrap;
+            z-index: -1; /* atrás do conteúdo */
+        }
+
+        /* Rodapé */
+        footer {
+            position: absolute;
+            bottom: 30px;
+            width: 100%;
+            text-align: center;
+            font-size: 14px;
+            color: rgba(0,0,0,0.5); /* cinza claro */
+        }
+
+        /* Ajuste do conteúdo para não sobrepor o rodapé */
+        .content {
+            padding-bottom: 60px; /* espaço extra para rodapé */
         }
     </style>
 </head>
 <body>
-    <h1>Resultado da Análise</h1>
-    <div>
-        {{ resposta|safe }}
+    <div class="content">
+        <h1>Resultado da Análise</h1>
+        <div>
+            {{ resposta|safe }}
+        </div>
     </div>
+
+    <footer>
+        Feito por TerraCast
+    </footer>
 </body>
 </html>
