@@ -2,179 +2,204 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="utf-8" />
-    <title>TerraCast - Predict today to protect tomorrow</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
-    <style>
-        body {
-            margin: 0;
-            background-color: #222;
-            color: white;
-            font-family: 'Poppins', sans-serif;
-            font-size: 22px;
-        }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TerraCast - Predict today to protect tomorrow</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+<style>
+body {
+    margin: 0;
+    background-color: #222;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(14px, 2vw, 20px);
+    line-height: 1.8;
+}
 
-        /* Navbar (copiado do primeiro template) */
-        .navbar {
-            display: flex;
-            align-items: center;
-            height: 80px;
-            background-color: #222;
-            padding: 0 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+/* Navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+    height: 80px;
+    background-color: #222;
+    padding: 0 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
 
-        .navbar .nav-content {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            gap: 60px;
-        }
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 0px; /* igual ao primeiro */
-        }
+.logo-container img {
+    height: 45px;
+    width: auto;
+}
 
-        .logo-container img {
-            height: 55px; /* igual ao primeiro */
-            width: auto;
-        }
+.logo-container h1 {
+    margin: 0;
+    font-size: clamp(16px, 3vw, 24px);
+    font-weight: bold;
+    color: white;
+}
 
-        .logo-container h1 {
-            margin: 0;
-            font-size: 24px;
-            font-weight: bold;
-            white-space: nowrap;
-            color: white; /* removendo vermelho, definindo branco */
-        }
+/* Links da navbar */
+.nav-links {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
+}
 
-        .navbar a {
-            position: relative;
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            padding: 0 5px;
-            white-space: nowrap;
-            transition: color 0.3s ease;
-            flex-grow: 0;
-            font-family: 'Poppins', sans-serif;
-        }
+.nav-links a {
+    flex: 1;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: clamp(14px, 2vw, 20px);
+    padding: 5px 0;
+    position: relative;
+}
 
-        .navbar a::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -4px;
-            width: 0;
-            height: 2px;
-            background-color: #ff6666;
-            transition: width 0.3s ease;
-        }
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background-color: #ff6666;
+    transition: width 0.3s ease;
+}
 
-        .navbar a:hover {
-            color: #ff6666;
-        }
+.nav-links a:hover::after {
+    width: 50%;
+    left: 25%;
+}
 
-        .navbar a:hover::after {
-            width: 100%;
-        }
+.nav-links a.active {
+    color: #ff6666;
+}
 
-        /* Conteúdo */
-        .content {
-            padding: 60px 80px;
-            line-height: 2.4;
-            text-align: center;
-            min-height: 160vh;
-        }
+.nav-links a.active::after {
+    width: 0;
+}
 
-        h1, h2, p, li {
-            animation: fadeMoveUp 1s ease forwards;
-        }
+/* Hamburger */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
 
-        @keyframes fadeMoveUp {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+.hamburger div {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+}
 
-        h1 {
-            color: #ff6666;
-            margin-bottom: 50px;
-            font-size: 4rem;
-            animation-delay: 0s;
-        }
+/* Conteúdo */
+.content {
+    padding: 60px 10vw;
+    text-align: center;
+    min-height: 100vh;
+}
 
-        h2 {
-            color: #ff6666;
-            margin-top: 80px;
-            margin-bottom: 30px;
-            font-size: 3rem;
-            animation-delay: 0.3s;
-        }
+h1, h2, p, li {
+    animation: fadeMoveUp 1s ease forwards;
+}
 
-        p {
-            max-width: 900px;
-            margin: 0 auto 50px auto;
-            text-align: center;
-            font-size: 1.5rem;
-            animation-delay: 0.6s;
-        }
+@keyframes fadeMoveUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
 
-        ul {
-            list-style-type: disc;
-            padding-left: 0;
-            max-width: 900px;
-            margin: 0 auto 50px auto;
-        }
+h1 {
+    color: #ff6666;
+    margin-bottom: 40px;
+    font-size: clamp(2rem, 6vw, 4rem);
+}
 
-        ul li {
-            text-align: left;
-            margin-left: 40px;
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-            animation-delay: 0.9s;
-        }
+h2 {
+    color: #ff6666;
+    margin-top: 60px;
+    margin-bottom: 20px;
+    font-size: clamp(1.5rem, 4vw, 3rem);
+}
 
-        a.content-link {
-            color: #ff6666;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.5rem;
-            animation-delay: 1.2s;
-            display: inline-block;
-            animation: fadeMoveUp 1s ease forwards;
-        }
+p {
+    max-width: 900px;
+    margin: 0 auto 30px auto;
+    text-align: center;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+}
 
-        a.content-link:hover {
-            text-decoration: underline;
-        }
-    </style>
+ul {
+    list-style-type: disc;
+    padding-left: 5vw;
+    max-width: 900px;
+    margin: 0 auto 30px auto;
+}
+
+ul li {
+    text-align: left;
+    margin-bottom: 15px;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #222;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        text-align: center;
+        gap: 5px;
+        padding: 10px 0;
+    }
+    .nav-links a {
+        padding: 10px 0;
+        flex: none;
+    }
+    .nav-links.active {
+        display: flex;
+    }
+    .hamburger {
+        display: flex;
+        margin-left: auto;
+    }
+}
+</style>
 </head>
 <body>
-
     <nav class="navbar">
-        <div class="nav-content">
-            <div class="logo-container">
-                <img src="{% static 'logo.png' %}" alt="Logo TerraCast">
-                <h1>TerraCast</h1>
-            </div>
+        <div class="logo-container">
+            <img src="{% static 'logo.png' %}" alt="Logo TerraCast">
+            <h1>TerraCast</h1>
+        </div>
+        <div class="nav-links" id="navLinks">
             <a href="{% url 'mapa_violence_3m' %}">Violence 3 months</a>
             <a href="{% url 'mapa_violence_12m' %}">Violence 12 months</a>
             <a href="{% url 'mapa_conflict_3m' %}">Conflict 3 months</a>
             <a href="{% url 'mapa_conflict_12m' %}">Conflict 12 months</a>
             <a href="{% url 'report' %}">Report</a>
-            <a href="{% url 'model' %}">Model</a> 
+            <a href="{% url 'model' %}">Model</a>
             <a href="{% url 'about' %}">About</a>
+        </div>
+        <div class="hamburger" id="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
     </nav>
 
@@ -182,24 +207,39 @@
         <h1>About TerraCast</h1>
         <p><em>Predict today to protect tomorrow.</em></p>
 
-        <p>TerraCast is a predictive intelligence platform specialized in anticipating armed conflicts and geopolitical instabilities on a global scale. Using advanced Artificial Intelligence technologies, statistical modeling, and machine learning, we transform complex data into actionable strategic insights.</p>
+        <p>TerraCast is a predictive intelligence platform specialized in anticipating armed conflicts and geopolitical instabilities on a global scale. Using AI technologies, statistical modeling, and machine learning, we transform complex data into actionable strategic insights.</p>
 
-        <p>Our system analyzes thousands of indicators — from economic, social, and political data to environmental and behavioral variables — to identify risk patterns and forecast conflict scenarios up to 12 months in advance. These predictions assist governments, international organizations, security companies, and humanitarian agencies in making informed decisions, reducing uncertainties, and saving lives.</p>
+        <p>Our system analyzes thousands of indicators — from economic, social, and political data to environmental and behavioral variables — to identify risk patterns and forecast conflict scenarios up to 12 months in advance. These predictions assist governments, organizations, and humanitarian agencies in making informed decisions, reducing uncertainties, and saving lives.</p>
 
         <h2>Our Mission</h2>
-        <p>To anticipate crises before they become tragedies. To provide data-driven intelligence to promote a safer, more transparent, and better-prepared world.</p>
+        <p>To anticipate crises before they become tragedies and provide data-driven intelligence for a safer, transparent world.</p>
 
         <h2>Our Vision</h2>
-        <p>To be the world’s leading reference in predictive geopolitical risk technology, contributing to conflict prevention and the construction of sustainable peace strategies.</p>
+        <p>To be the world’s leading reference in predictive geopolitical risk technology, contributing to conflict prevention and sustainable peace strategies.</p>
 
         <h2>Our Differentials</h2>
         <ul>
             <li>Proprietary AI models calibrated with historical data and updated.</li>
             <li>Global coverage, with subnational forecasts and interactive risk maps.</li>
-            <li>Multidisciplinary team, with researchers in data science, international politics, and security.</li>
-            <li>Integration with open sources, financial indexes, media, and generative AI for automated report production.</li>
+            <li>Multidisciplinary team in data science, politics, and security.</li>
+            <li>Integration with open sources, financial indexes, media, and generative AI for automated reports.</li>
         </ul>
-
     </div>
+
+<script>
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+
+hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+});
+
+const links = navLinks.querySelectorAll('a');
+links.forEach(link => {
+    if (link.href === window.location.href) {
+        link.classList.add('active');
+    }
+});
+</script>
 </body>
 </html>

@@ -3,68 +3,70 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TerraCast - Country Report</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
     <style>
         body {
             margin: 0;
             background-color: #222;
-            color: white;
             font-family: 'Poppins', sans-serif;
-            font-size: 22px;
+            color: white;
+            font-size: clamp(16px, 1.4vw, 22px);
+            line-height: 1.6;
         }
 
+        /* Navbar */
         .navbar {
             display: flex;
             align-items: center;
             height: 80px;
             background-color: #222;
-            padding: 0 20px;
+            padding: 0 15px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.5);
             position: sticky;
             top: 0;
             z-index: 1000;
         }
 
-        .navbar .nav-content {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            gap: 60px;
-        }
-
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 0px;
+            gap: 10px;
         }
 
         .logo-container img {
-            height: 55px;
+            height: clamp(30px, 5vw, 45px);
             width: auto;
         }
 
         .logo-container h1 {
             margin: 0;
-            font-size: 24px;
+            font-size: clamp(16px, 2.5vw, 24px);
             font-weight: bold;
-            white-space: nowrap;
-            color: white;
+            color: white !important;
         }
 
-        .navbar a {
-            position: relative;
+        /* Links da navbar */
+        .nav-links {
+            display: flex;
+            flex: 1;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links a {
+            flex: 1;
+            text-align: center;
             color: white;
             text-decoration: none;
             font-weight: bold;
-            padding: 0 5px;
-            white-space: nowrap;
-            transition: color 0.3s ease;
-            flex-grow: 0;
-            font-family: 'Poppins', sans-serif;
+            font-size: clamp(14px, 1.2vw, 20px);
+            padding: 5px 0;
+            position: relative;
         }
 
-        .navbar a::after {
+        .nav-links a::after {
             content: "";
             position: absolute;
             left: 0;
@@ -75,17 +77,36 @@
             transition: width 0.3s ease;
         }
 
-        .navbar a:hover {
+        .nav-links a:hover::after {
+            width: 50%;
+            left: 25%;
+        }
+
+        .nav-links a.active {
             color: #ff6666;
         }
 
-        .navbar a:hover::after {
-            width: 100%;
+        .nav-links a.active::after {
+            width: 0;
         }
 
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+        }
+
+        /* Conteúdo */
         .content {
-            padding: 60px 80px;
-            line-height: 2.2;
+            padding: clamp(30px, 5vw, 60px) clamp(20px, 5vw, 80px);
             min-height: 100vh;
             max-width: 1000px;
             margin: 0 auto;
@@ -93,7 +114,7 @@
 
         h1 {
             color: #ff6666;
-            font-size: 3rem;
+            font-size: clamp(2rem, 5vw, 3rem);
             margin-bottom: 20px;
             text-align: center;
         }
@@ -101,7 +122,7 @@
         p.intro-text {
             max-width: 800px;
             margin: 0 auto 40px auto;
-            font-size: 1.3rem;
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
             color: #ccc;
             text-align: center;
             line-height: 1.6;
@@ -115,19 +136,19 @@
         }
 
         input[type="text"] {
-            padding: 12px;
-            font-size: 1.2rem;
+            padding: clamp(8px, 1.5vw, 12px);
+            font-size: clamp(1rem, 2vw, 1.2rem);
             border: none;
             border-radius: 8px;
             margin-top: 10px;
-            width: 300px;
+            width: clamp(200px, 50%, 300px);
             text-align: center;
         }
 
         button {
             margin-top: 20px;
-            padding: 12px 24px;
-            font-size: 1.1rem;
+            padding: clamp(8px, 1.5vw, 12px) clamp(16px, 3vw, 24px);
+            font-size: clamp(1rem, 2vw, 1.1rem);
             background-color: #ff6666;
             color: white;
             border: none;
@@ -140,7 +161,7 @@
         }
 
         .label {
-            font-size: 1.3rem;
+            font-size: clamp(1rem, 2vw, 1.3rem);
             margin-bottom: 10px;
             color: #ccc;
             text-align: center;
@@ -152,7 +173,7 @@
             margin-bottom: 20px;
             color: #ff6666;
             font-weight: bold;
-            font-size: 1.4rem;
+            font-size: clamp(1rem, 2vw, 1.4rem);
         }
 
         .result-html {
@@ -160,69 +181,125 @@
             color: #eee;
             border: 1px solid #555;
             border-radius: 8px;
-            padding: 20px;
+            padding: clamp(12px, 2vw, 20px);
             max-height: 500px;
             overflow-y: auto;
             white-space: normal;
-            font-size: 1.1rem;
+            font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: #222;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                text-align: center;
+                gap: 5px;
+                padding: 10px 0;
+            }
+            .nav-links a {
+                font-size: clamp(14px, 3vw, 18px);
+                padding: 10px 0;
+                flex: none;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .hamburger {
+                display: flex;
+                margin-left: auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: clamp(1.5rem, 5vw, 2rem); }
+            p.intro-text { font-size: clamp(0.9rem, 3vw, 1.1rem); }
+            input[type="text"] { width: 80%; font-size: clamp(0.9rem, 2.5vw, 1.1rem); }
+            button { font-size: clamp(0.9rem, 2.5vw, 1rem); }
+            .label { font-size: clamp(0.9rem, 2.5vw, 1rem); }
+            .result-html { font-size: clamp(0.8rem, 2.5vw, 1rem); padding: clamp(8px, 2vw, 12px); }
         }
     </style>
 </head>
 <body>
-
-    <nav class="navbar">
-        <div class="nav-content">
-            <div class="logo-container">
-                <img src="{% static 'logo.png' %}" alt="TerraCast Logo">
-                <h1>TerraCast</h1>
-            </div>
-            <a href="{% url 'mapa_violence_3m' %}">Violence 3 months</a>
-            <a href="{% url 'mapa_violence_12m' %}">Violence 12 months</a>
-            <a href="{% url 'mapa_conflict_3m' %}">Conflict 3 months</a>
-            <a href="{% url 'mapa_conflict_12m' %}">Conflict 12 months</a>
-            <a href="{% url 'report' %}">Report</a>
-            <a href="{% url 'model' %}">Model</a> 
-            <a href="{% url 'about' %}">About</a>
-        </div>
-    </nav>
-
-    <div class="content">
-        <h1>🤖 Country Report</h1>
-
-        <p class="intro-text">
-            This tool uses artificial intelligence to analyze risks of armed conflict and violence in countries, based on historical data and forecasts for the upcoming months. 
-            By entering the ISO code of the desired country, the system generates a detailed report, comparing the predictions with real events that occurred and evaluating data consistency. 
-            The goal is to provide a clear and objective view to support political and strategic analyses.
-        </p>
-
-        <form method="POST" id="form-analise">
-            {% csrf_token %}
-            <label class="label" for="codigo_iso">Enter the country ISO code (e.g., COL, BOL, UKR):</label>
-            <input type="text" name="codigo_iso" id="codigo_iso" placeholder="e.g. COL" value="{{ entrada }}">
-            <button type="submit" id="btn-analise">Generate Report</button>
-        </form>
-
-        <div id="loading">Processing report, please wait...</div>
-
-        {% if resposta %}
-            <h2 style="color: #ff6666;">Result:</h2>
-            <div class="result-html">
-                {{ resposta|safe }}
-            </div>
-        {% endif %}
+<nav class="navbar">
+    <div class="logo-container">
+        <img src="{% static 'logo.png' %}" alt="Logo TerraCast">
+        <h1>TerraCast</h1>
     </div>
+    <div class="nav-links" id="navLinks">
+        <a href="{% url 'mapa_violence_3m' %}">Violence 3 months</a>
+        <a href="{% url 'mapa_violence_12m' %}">Violence 12 months</a>
+        <a href="{% url 'mapa_conflict_3m' %}">Conflict 3 months</a>
+        <a href="{% url 'mapa_conflict_12m' %}">Conflict 12 months</a>
+        <a href="{% url 'report' %}">Report</a>
+        <a href="{% url 'model' %}">Model</a>
+        <a href="{% url 'about' %}">About</a>
+    </div>
+    <div class="hamburger" id="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</nav>
 
-    <script>
-        const form = document.getElementById('form-analise');
-        const loading = document.getElementById('loading');
-        const btn = document.getElementById('btn-analise');
+<div class="content">
+    <h1>🤖 Country Report</h1>
 
-        form.addEventListener('submit', function () {
-            loading.style.display = 'block';
-            btn.disabled = true;
-            btn.textContent = 'Generating...';
-        });
-    </script>
+    <p class="intro-text">
+        This tool uses artificial intelligence to analyze risks of armed conflict and violence in countries, based on historical data and forecasts for the upcoming months. 
+        By entering the ISO code of the desired country, the system generates a detailed report, comparing the predictions with real events that occurred and evaluating data consistency. 
+        The goal is to provide a clear and objective view to support political and strategic analyses.
+    </p>
 
+    <form method="POST" id="form-analise">
+        {% csrf_token %}
+        <label class="label" for="codigo_iso">Enter the country ISO code (e.g., COL, BOL, UKR):</label>
+        <input type="text" name="codigo_iso" id="codigo_iso" placeholder="e.g. COL" value="{{ entrada }}">
+        <button type="submit" id="btn-analise">Generate Report</button>
+    </form>
+
+    <div id="loading">Processing report, please wait...</div>
+
+    {% if resposta %}
+        <h2 style="color: #ff6666;">Result:</h2>
+        <div class="result-html">
+            {{ resposta|safe }}
+        </div>
+    {% endif %}
+</div>
+
+<script>
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+
+hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+});
+
+// Define link ativo
+const links = navLinks.querySelectorAll('a');
+links.forEach(link => {
+    if (link.href === window.location.href) {
+        link.classList.add('active');
+    }
+});
+
+// Form loading
+const form = document.getElementById('form-analise');
+const loading = document.getElementById('loading');
+const btn = document.getElementById('btn-analise');
+
+form.addEventListener('submit', function () {
+    loading.style.display = 'block';
+    btn.disabled = true;
+    btn.textContent = 'Generating...';
+});
+</script>
 </body>
 </html>

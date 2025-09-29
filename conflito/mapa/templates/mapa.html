@@ -2,122 +2,203 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="utf-8" />
-    <title>TerraCast - Predict today to protect tomorrow</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
-    <style>
-        body {
-            margin: 0;
-            background-color: #222;
-            font-family: 'Poppins', sans-serif;
-            color: white;
-            font-size: 22px;
-        }
-        .navbar {
-            display: flex;
-            align-items: center;
-            height: 80px;
-            background-color: #222;
-            padding: 0 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        .navbar .nav-content {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            gap: 60px;
-        }
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 0px;
-        }
-        .logo-container img {
-            height: 55px;
-            width: auto;
-        }
-        .logo-container h1 {
-            margin: 0;
-            font-size: 24px;
-            font-weight: bold;
-            white-space: nowrap;
-        }
-        .navbar a {
-            position: relative;
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            padding: 0 5px;
-            white-space: nowrap;
-            transition: color 0.3s ease;
-            flex-grow: 0;
-            font-family: 'Poppins', sans-serif;
-            font-size: 22px;
-        }
-        .navbar a::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -4px;
-            width: 0;
-            height: 2px;
-            background-color: #ff6666;
-            transition: width 0.3s ease;
-        }
-        .navbar a:hover {
-            color: #ff6666;
-        }
-        .navbar a:hover::after {
-            width: 100%;
-        }
-        #grafico {
-            height: calc(100vh - 80px);
-            width: 100%;
-        }
-        .plotly-graph-div {
-            height: 100% !important;
-            width: 100% !important;
-        }
-        .button-link {
-            display: inline-block;
-            background-color: #ff6666;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-            margin-bottom: 30px;
-            border: none;
-            cursor: pointer;
-        }
-        .button-link:hover {
-            background-color: #e05555;
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TerraCast - Predict today to protect tomorrow</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+<link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+<style>
+body {
+    margin: 0;
+    background-color: #222;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+    height: 80px;
+    background-color: #222;
+    padding: 0 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-container img {
+    height: 45px;
+    width: auto;
+}
+
+.logo-container h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Links da navbar */
+.nav-links {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links a {
+    flex: 1;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 5px 0;
+    position: relative;
+}
+
+/* Barra inferior no hover */
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background-color: #ff6666;
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 50%;
+    left: 25%;
+}
+
+/* Link ativo - vermelho, sem barra */
+.nav-links a.active {
+    color: #ff6666;
+}
+
+.nav-links a.active::after {
+    width: 0;
+}
+
+/* Hamburger */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.hamburger div {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+}
+
+/* Graph */
+#grafico {
+    width: 100%;
+    height: calc(100vh - 80px); /* ocupa a tela menos navbar */
+    min-height: 400px;
+    display: flex;
+}
+
+#grafico > div {
+    flex: 1;
+}
+
+.plotly-graph-div {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+    .nav-links a { font-size: 20px; }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #222;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        text-align: center;
+        gap: 5px;
+        padding: 10px 0;
+    }
+    .nav-links a {
+        padding: 10px 0;
+        font-size: 18px;
+        flex: none;
+    }
+    .nav-links.active {
+        display: flex;
+    }
+    .hamburger {
+        display: flex;
+        margin-left: auto;
+    }
+    #grafico {
+        height: 60vh;
+    }
+}
+
+@media (max-width: 480px) {
+    body { font-size: 16px; }
+    .logo-container h1 { font-size: 18px; }
+    .nav-links a { font-size: 16px; }
+    #grafico {
+        height: 50vh;
+    }
+}
+</style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-content">
-            <div class="logo-container">
-                <img src="{% static 'logo.png' %}" alt="Logo TerraCast">
-                <h1>TerraCast</h1>
-            </div>
-            <a href="{% url 'mapa_violence_3m' %}">Violence 3 months</a>
-            <a href="{% url 'mapa_violence_12m' %}">Violence 12 months</a>
-            <a href="{% url 'mapa_conflict_3m' %}">Conflict 3 months</a>
-            <a href="{% url 'mapa_conflict_12m' %}">Conflict 12 months</a>
-            <a href="{% url 'report' %}">Report</a>
-            <a href="{% url 'model' %}">Model</a> 
-            <a href="{% url 'about' %}">About</a>
-        </div>
-    </nav>
-    <div id="grafico">
-        {{ plot_html|safe }}
+<nav class="navbar">
+    <div class="logo-container">
+        <img src="{% static 'logo.png' %}" alt="Logo TerraCast">
+        <h1>TerraCast</h1>
     </div>
+    <div class="nav-links" id="navLinks">
+        <a href="{% url 'mapa_violence_3m' %}" class="{% if request.resolver_match.url_name == 'mapa_violence_3m' %}active{% endif %}">Violence 3 months</a>
+        <a href="{% url 'mapa_violence_12m' %}" class="{% if request.resolver_match.url_name == 'mapa_violence_12m' %}active{% endif %}">Violence 12 months</a>
+        <a href="{% url 'mapa_conflict_3m' %}" class="{% if request.resolver_match.url_name == 'mapa_conflict_3m' %}active{% endif %}">Conflict 3 months</a>
+        <a href="{% url 'mapa_conflict_12m' %}" class="{% if request.resolver_match.url_name == 'mapa_conflict_12m' %}active{% endif %}">Conflict 12 months</a>
+        <a href="{% url 'report' %}" class="{% if request.resolver_match.url_name == 'report' %}active{% endif %}">Report</a>
+        <a href="{% url 'model' %}" class="{% if request.resolver_match.url_name == 'model' %}active{% endif %}">Model</a>
+        <a href="{% url 'about' %}" class="{% if request.resolver_match.url_name == 'about' %}active{% endif %}">About</a>
+    </div>
+    <div class="hamburger" id="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</nav>
+
+<div id="grafico">
+    {{ plot_html|safe }}
+</div>
+
+<script>
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+
+hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+});
+</script>
 </body>
 </html>

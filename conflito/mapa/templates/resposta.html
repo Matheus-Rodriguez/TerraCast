@@ -4,16 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <title>TerraCast - Resultado da Análise</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
     <style>
         body {
             margin: 0;
             background-color: #222;
             color: white;
             font-family: 'Poppins', sans-serif;
-            font-size: 22px;
+            font-size: clamp(14px, 2vw, 20px);
+            line-height: 1.8;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
+        /* Navbar */
         .navbar {
             display: flex;
             align-items: center;
@@ -26,45 +32,43 @@
             z-index: 1000;
         }
 
-        .navbar .nav-content {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            gap: 60px;
-        }
-
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 0px;
+            gap: 10px;
         }
 
         .logo-container img {
-            height: 55px;
+            height: 45px;
             width: auto;
         }
 
         .logo-container h1 {
             margin: 0;
-            font-size: 24px;
+            font-size: clamp(16px, 3vw, 24px);
             font-weight: bold;
-            white-space: nowrap;
             color: white;
         }
 
-        .navbar a {
-            position: relative;
+        .nav-links {
+            display: flex;
+            flex: 1;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links a {
+            flex: 1;
+            text-align: center;
             color: white;
             text-decoration: none;
             font-weight: bold;
-            padding: 0 5px;
-            white-space: nowrap;
-            transition: color 0.3s ease;
-            flex-grow: 0;
-            font-family: 'Poppins', sans-serif;
+            font-size: clamp(14px, 2vw, 20px);
+            padding: 5px 0;
+            position: relative;
         }
 
-        .navbar a::after {
+        .nav-links a::after {
             content: "";
             position: absolute;
             left: 0;
@@ -75,101 +79,147 @@
             transition: width 0.3s ease;
         }
 
-        .navbar a:hover {
+        .nav-links a:hover::after {
+            width: 50%;
+            left: 25%;
+        }
+
+        .nav-links a.active {
             color: #ff6666;
         }
 
-        .navbar a:hover::after {
-            width: 100%;
+        .nav-links a.active::after {
+            width: 0;
         }
 
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+        }
+
+        /* Conteúdo */
         .content {
-            padding: 60px 80px;
-            line-height: 2.2;
+            padding: 60px 10vw;
+            text-align: center;
             min-height: 100vh;
-            max-width: 1000px;
-            margin: 0 auto;
         }
 
         h1 {
             color: #ff6666;
-            font-size: 3rem;
-            margin-bottom: 20px;
-            text-align: center;
+            margin-bottom: 40px;
+            font-size: clamp(2rem, 6vw, 4rem);
         }
 
         .result-html {
-            background-color: transparent;
-            color: white;
-            border: none;
-            padding: 0;
-            white-space: normal;
-            font-size: 1.1rem;
-            line-height: 1.6;
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            line-height: 1.8;
+            margin: 1rem 0;
         }
 
         a.voltar {
             display: inline-block;
-            margin-top: 30px;
+            margin-top: 1.2rem;
             color: #ff6666;
             font-weight: bold;
             text-decoration: none;
-            font-size: 1.1rem;
-        }
-
-        a.voltar:hover {
-            text-decoration: underline;
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
         }
 
         .btn-pdf {
             display: inline-block;
-            margin-top: 20px;
-            padding: 12px 24px;
-            font-size: 1.1rem;
+            margin-top: 1.2rem;
+            padding: 0.7rem 1.4rem;
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
             background-color: #ff6666;
             color: white;
-            border: none;
-            border-radius: 8px;
+            border-radius: 0.5rem;
             cursor: pointer;
             text-decoration: none;
             font-weight: bold;
-            transition: background-color 0.3s ease;
         }
 
         .btn-pdf:hover {
             background-color: #e64e4e;
         }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: #222;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                text-align: center;
+                gap: 5px;
+                padding: 10px 0;
+            }
+            .nav-links a {
+                padding: 10px 0;
+                flex: none;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .hamburger {
+                display: flex;
+                margin-left: auto;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="nav-content">
-            <div class="logo-container">
-                <img src="{% static 'logo.png' %}" alt="TerraCast Logo">
-                <h1>TerraCast</h1>
-            </div>
-            <a href="{% url 'mapa_violence_3m' %}">Violence 3 months</a>
-            <a href="{% url 'mapa_violence_12m' %}">Violence 12 months</a>
-            <a href="{% url 'mapa_conflict_3m' %}">Conflict 3 months</a>
-            <a href="{% url 'mapa_conflict_12m' %}">Conflict 12 months</a>
-            <a href="{% url 'report' %}">Report</a>
-            <a href="{% url 'model' %}">Model</a> 
-            <a href="{% url 'about' %}">About</a>
-        </div>
-    </nav>
-
-    <div class="content">
-        <h1>Resultado da Análise</h1>
-        <div class="result-html">
-            {{ resposta|safe }}
-        </div>
-        <a class="voltar" href="{% url 'report' %}">← Nova análise</a><br>
-        
-        {% if resposta and "ERRO" not in resposta %}
-            <a href="{% url 'baixar_pdf' %}" class="btn-pdf" target="_blank" rel="noopener noreferrer">📄 Baixar relatório em PDF</a>
-        {% endif %}
+<nav class="navbar">
+    <div class="logo-container">
+        <img src="{% static 'logo.png' %}" alt="Logo TerraCast">
+        <h1>TerraCast</h1>
     </div>
+    <div class="nav-links" id="navLinks">
+        <a href="{% url 'mapa_violence_3m' %}">Violence 3 months</a>
+        <a href="{% url 'mapa_violence_12m' %}">Violence 12 months</a>
+        <a href="{% url 'mapa_conflict_3m' %}">Conflict 3 months</a>
+        <a href="{% url 'mapa_conflict_12m' %}">Conflict 12 months</a>
+        <a href="{% url 'report' %}">Report</a>
+        <a href="{% url 'model' %}">Model</a>
+        <a href="{% url 'about' %}">About</a>
+    </div>
+    <div class="hamburger" id="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</nav>
+
+<div class="content">
+    <h1>Resultado da Análise</h1>
+    <div class="result-html">
+        {{ resposta|safe }}
+    </div>
+    <a class="voltar" href="{% url 'report' %}">← Nova análise</a><br>
+    
+    {% if resposta and "ERRO" not in resposta %}
+        <a href="{% url 'baixar_pdf' %}" class="btn-pdf" target="_blank" rel="noopener noreferrer">📄 Baixar relatório em PDF</a>
+    {% endif %}
+</div>
+
+<script>
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+});
+</script>
 
 </body>
 </html>
