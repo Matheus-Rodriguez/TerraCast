@@ -1,0 +1,302 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}TerraCast{% endblock %}</title>
+<link rel="icon" type="image/png" href="{% static 'favicon.png' %}">
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+<style>
+body {
+    margin: 0;
+    background-color: #222;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(14px, 2vw, 20px);
+    line-height: 1.8;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+    height: 80px;
+    background-color: #222;
+    padding: 0 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 0px;
+}
+
+.logo-container img {
+    height: 45px;
+    width: auto;
+    margin-right: -10px;
+}
+
+.logo-container h1 {
+    margin: 0;
+    font-size: clamp(16px, 3vw, 24px);
+    font-weight: bold;
+    color: white;
+}
+
+/* Links da navbar */
+.nav-links {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links a {
+    flex: 1;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: clamp(14px, 2vw, 20px);
+    padding: 5px 0;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background-color: #ff6666;
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 50%;
+    left: 25%;
+}
+
+.nav-links a.active {
+    color: #ff6666;
+}
+
+.nav-links a.active::after {
+    width: 0;
+}
+
+/* Hamburger */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.hamburger div {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+}
+
+/* Conteúdo */
+.content {
+    padding: 60px 10vw;
+    text-align: center;
+    flex: 1;
+}
+
+h1 {
+    color: #ff6666;
+    margin-bottom: 40px;
+    font-size: clamp(2rem, 6vw, 4rem);
+}
+
+h2 {
+    color: #ff6666;
+    margin-top: 60px;
+    margin-bottom: 20px;
+    font-size: clamp(1.5rem, 4vw, 3rem);
+}
+
+p {
+    max-width: 900px;
+    margin: 0 auto 30px auto;
+    text-align: center;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+}
+
+ul {
+    list-style-type: disc;
+    padding-left: 5vw;
+    max-width: 900px;
+    margin: 0 auto 30px auto;
+}
+
+ul li {
+    text-align: left;
+    margin-bottom: 15px;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+}
+
+/* Footer */
+footer {
+    background-color: #111;
+    color: #aaa;
+    text-align: center;
+    padding: 20px 10px;
+    font-size: clamp(0.8rem, 2vw, 1rem);
+    border-top: 1px solid #333;
+}
+
+.social-links {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-links img {
+    transition: 0.2s;
+    filter: brightness(0) invert(0.8);
+}
+
+.social-links img:hover {
+    filter: brightness(1) invert(0.9);
+    transform: scale(1.1);
+}
+
+footer {
+    display: flex;                 /* força layout flex */
+    flex-direction: column;        /* texto acima, ícones abaixo */
+    align-items: center;           /* centraliza horizontalmente */
+    justify-content: center;       /* centraliza verticalmente no padding */
+    text-align: center;            /* garante alinhamento do texto */
+}
+
+footer p {
+    margin: 0 0 10px 0;            /* remove deslocamentos estranhos */
+    width: 100%;                   /* ocupa a linha toda */
+    max-width: none;               /* ignora max-width global de <p> */
+    text-align: center;            /* centralizado mesmo com regras herdadas */
+    font-size: clamp(0.8rem, 1.2vw, 1rem); /* tamanho menor e consistente */
+}
+
+footer .social-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;                     /* espaço entre ícones */
+}
+
+footer .social-links img {
+    transition: 0.2s;
+    filter: brightness(0) invert(0.8);
+}
+footer .social-links img:hover {
+    filter: brightness(1) invert(0.9);
+    transform: scale(1.1);
+}
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #222;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        text-align: center;
+        gap: 5px;
+        padding: 10px 0;
+    }
+    .nav-links a {
+        padding: 10px 0;
+        flex: none;
+    }
+    .nav-links.active {
+        display: flex;
+    }
+    .hamburger {
+        display: flex;
+        margin-left: auto;
+    }
+}
+</style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo-container">
+            <img src="{% static 'logo.png' %}" alt="Logo TerraCast" style="width: 80px; height: auto;">
+            <h1>TerraCast</h1>
+        </div>
+        <div class="nav-links" id="navLinks">
+            <a href="{% url 'mapa_violence_3m' %}">Violence 3 months</a>
+            <a href="{% url 'mapa_violence_12m' %}">Violence 12 months</a>
+            <a href="{% url 'mapa_conflict_3m' %}">Conflict 3 months</a>
+            <a href="{% url 'mapa_conflict_12m' %}">Conflict 12 months</a>
+            <a href="{% url 'report' %}">Report</a>
+            <a href="{% url 'model' %}">Model</a>
+            <a href="{% url 'about' %}">About</a>
+        </div>
+        <div class="hamburger" id="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </nav>
+
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <footer>
+        <p>&copy; 2025 TerraCast. Predict today to protect tomorrow.</p>
+        <div class="social-links">
+            <a href="https://github.com/lurodriguezzz/CS2-Coach" target="_blank">
+                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg"
+                     alt="GitHub" width="40" height="40"
+                     style="transition: 0.2s; filter: brightness(0) invert(0.8);">
+            </a>
+            <a href="https://www.linkedin.com/in/lucas-rodr%C3%ADguez-b8a93b254/" target="_blank">
+                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg"
+                     alt="LinkedIn" width="40" height="40"
+                     style="transition: 0.2s; filter: brightness(0) invert(0.8);">
+            </a>
+            <a href="https://www.instagram.com/terracastproducts/" target="_blank">
+                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg"
+                     alt="Instagram" width="40" height="40"
+                     style="transition: 0.2s; filter: brightness(0) invert(0.8);">
+            </a>
+        </div>
+    </footer>
+
+<script>
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+
+hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+});
+
+const links = navLinks.querySelectorAll('a');
+links.forEach(link => {
+    if (link.href === window.location.href) {
+        link.classList.add('active');
+    }
+});
+</script>
+</body>
+</html>
