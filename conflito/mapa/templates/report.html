@@ -6,17 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TerraCast - Country Report</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+    <link rel="shortcut icon" href="{% static 'favicon2.png' %}" type="image/png" sizes="48x48">
     <style>
         body {
             margin: 0;
             background-color: #222;
             font-family: 'Poppins', sans-serif;
             color: white;
-            font-size: clamp(16px, 1.4vw, 22px);
             line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
-        /* Navbar */
+        /* ====== NAVBAR (idêntica ao primeiro arquivo) ====== */
         .navbar {
             display: flex;
             align-items: center;
@@ -32,17 +35,26 @@
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 0px;
+        }
+
+        .logo-container a {
+            display: flex;
+            align-items: center;
+            gap: 0px;
+            text-decoration: none;
+            color: inherit;
         }
 
         .logo-container img {
-            height: clamp(30px, 5vw, 45px);
+            height: 45px;
             width: auto;
+            margin-right: -10px; 
         }
 
         .logo-container h1 {
             margin: 0;
-            font-size: clamp(16px, 2.5vw, 24px);
+            font-size: 24px;
             font-weight: bold;
             color: white !important;
         }
@@ -61,7 +73,7 @@
             color: white;
             text-decoration: none;
             font-weight: bold;
-            font-size: clamp(14px, 1.2vw, 20px);
+            font-size: 20px;
             padding: 5px 0;
             position: relative;
         }
@@ -104,17 +116,18 @@
             background-color: white;
         }
 
-        /* Conteúdo */
+        /* ====== CONTEÚDO ====== */
         .content {
-            padding: clamp(30px, 5vw, 60px) clamp(20px, 5vw, 80px);
-            min-height: 100vh;
+            padding: 40px 20px;
+            flex: 1;
             max-width: 1000px;
             margin: 0 auto;
+            width: 100%;
         }
 
         h1 {
             color: #ff6666;
-            font-size: clamp(2rem, 5vw, 3rem);
+            font-size: 42px;
             margin-bottom: 20px;
             text-align: center;
         }
@@ -122,7 +135,7 @@
         p.intro-text {
             max-width: 800px;
             margin: 0 auto 40px auto;
-            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            font-size: 20px;
             color: #ccc;
             text-align: center;
             line-height: 1.6;
@@ -136,19 +149,20 @@
         }
 
         input[type="text"] {
-            padding: clamp(8px, 1.5vw, 12px);
-            font-size: clamp(1rem, 2vw, 1.2rem);
+            padding: 10px 12px;
+            font-size: 18px;
             border: none;
             border-radius: 8px;
             margin-top: 10px;
-            width: clamp(200px, 50%, 300px);
+            width: 300px;
+            max-width: 80%;
             text-align: center;
         }
 
         button {
             margin-top: 20px;
-            padding: clamp(8px, 1.5vw, 12px) clamp(16px, 3vw, 24px);
-            font-size: clamp(1rem, 2vw, 1.1rem);
+            padding: 10px 20px;
+            font-size: 18px;
             background-color: #ff6666;
             color: white;
             border: none;
@@ -161,7 +175,7 @@
         }
 
         .label {
-            font-size: clamp(1rem, 2vw, 1.3rem);
+            font-size: 18px;
             margin-bottom: 10px;
             color: #ccc;
             text-align: center;
@@ -173,7 +187,7 @@
             margin-bottom: 20px;
             color: #ff6666;
             font-weight: bold;
-            font-size: clamp(1rem, 2vw, 1.4rem);
+            font-size: 20px;
         }
 
         .result-html {
@@ -181,14 +195,40 @@
             color: #eee;
             border: 1px solid #555;
             border-radius: 8px;
-            padding: clamp(12px, 2vw, 20px);
+            padding: 16px;
             max-height: 500px;
             overflow-y: auto;
             white-space: normal;
-            font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+            font-size: 16px;
         }
 
-        /* RESPONSIVE */
+        /* ====== FOOTER (centralizado + social icons) ====== */
+        footer {
+            background-color: #111;
+            color: #ccc;
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid #333;
+        }
+
+        .social-links {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-links img {
+            transition: 0.2s;
+            filter: brightness(0) invert(0.8);
+        }
+
+        .social-links img:hover {
+            filter: brightness(1) invert(0.9);
+            transform: scale(1.1);
+        }
+
+        /* ====== RESPONSIVE (idêntico ao primeiro) ====== */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -203,8 +243,8 @@
                 padding: 10px 0;
             }
             .nav-links a {
-                font-size: clamp(14px, 3vw, 18px);
                 padding: 10px 0;
+                font-size: 18px;
                 flex: none;
             }
             .nav-links.active {
@@ -214,37 +254,44 @@
                 display: flex;
                 margin-left: auto;
             }
+
+            /* Conteúdo em telas médias */
+            h1 { font-size: 32px; }
+            p.intro-text { font-size: 18px; }
         }
 
         @media (max-width: 480px) {
-            h1 { font-size: clamp(1.5rem, 5vw, 2rem); }
-            p.intro-text { font-size: clamp(0.9rem, 3vw, 1.1rem); }
-            input[type="text"] { width: 80%; font-size: clamp(0.9rem, 2.5vw, 1.1rem); }
-            button { font-size: clamp(0.9rem, 2.5vw, 1rem); }
-            .label { font-size: clamp(0.9rem, 2.5vw, 1rem); }
-            .result-html { font-size: clamp(0.8rem, 2.5vw, 1rem); padding: clamp(8px, 2vw, 12px); }
+            body { font-size: 16px; }
+            .logo-container h1 { font-size: 18px; }
+            .nav-links a { font-size: 16px; }
+
+            /* Conteúdo em telas pequenas */
+            h1 { font-size: 26px; }
+            p.intro-text { font-size: 16px; }
         }
     </style>
 </head>
 <body>
 <nav class="navbar">
     <div class="logo-container">
-        <img src="{% static 'logo.png' %}" alt="Logo TerraCast">
-        <h1>TerraCast</h1>
+        <a href="{% url 'home' %}">
+            <img src="{% static 'logo.png' %}" alt="Logo TerraCast" style="width: 80px; height: auto;">
+            <h1>TerraCast</h1>
+        </a>
     </div>
+
     <div class="nav-links" id="navLinks">
-        <a href="{% url 'mapa_violence_3m' %}">Violence 3 months</a>
-        <a href="{% url 'mapa_violence_12m' %}">Violence 12 months</a>
-        <a href="{% url 'mapa_conflict_3m' %}">Conflict 3 months</a>
-        <a href="{% url 'mapa_conflict_12m' %}">Conflict 12 months</a>
-        <a href="{% url 'report' %}">Report</a>
-        <a href="{% url 'model' %}">Model</a>
-        <a href="{% url 'about' %}">About</a>
+        <a href="{% url 'mapa_violence_3m' %}"  class="{% if request.resolver_match.url_name == 'mapa_violence_3m' %}active{% endif %}">Violence 3 months</a>
+        <a href="{% url 'mapa_violence_12m' %}" class="{% if request.resolver_match.url_name == 'mapa_violence_12m' %}active{% endif %}">Violence 12 months</a>
+        <a href="{% url 'mapa_conflict_3m' %}"  class="{% if request.resolver_match.url_name == 'mapa_conflict_3m' %}active{% endif %}">Conflict 3 months</a>
+        <a href="{% url 'mapa_conflict_12m' %}" class="{% if request.resolver_match.url_name == 'mapa_conflict_12m' %}active{% endif %}">Conflict 12 months</a>
+        <a href="{% url 'report' %}"              class="{% if request.resolver_match.url_name == 'report' %}active{% endif %}">Report</a>
+        <a href="{% url 'model' %}"               class="{% if request.resolver_match.url_name == 'model' %}active{% endif %}">Model</a>
+        <a href="{% url 'about' %}"               class="{% if request.resolver_match.url_name == 'about' %}active{% endif %}">About</a>
     </div>
+
     <div class="hamburger" id="hamburger">
-        <div></div>
-        <div></div>
-        <div></div>
+        <div></div><div></div><div></div>
     </div>
 </nav>
 
@@ -252,8 +299,8 @@
     <h1>🤖 Country Report</h1>
 
     <p class="intro-text">
-        This tool uses artificial intelligence to analyze risks of armed conflict and violence in countries, based on historical data and forecasts for the upcoming months. 
-        By entering the ISO code of the desired country, the system generates a detailed report, comparing the predictions with real events that occurred and evaluating data consistency. 
+        This tool uses artificial intelligence to analyze risks of armed conflict and violence in countries, based on historical data and forecasts for the upcoming months.
+        By entering the ISO code of the desired country, the system generates a detailed report, comparing the predictions with real events that occurred and evaluating data consistency.
         The goal is to provide a clear and objective view to support political and strategic analyses.
     </p>
 
@@ -267,34 +314,46 @@
     <div id="loading">Processing report, please wait...</div>
 
     {% if resposta %}
-        <h2 style="color: #ff6666;">Result:</h2>
+        <h2 style="color: #ff6666; text-align:center;">Result:</h2>
         <div class="result-html">
             {{ resposta|safe }}
         </div>
     {% endif %}
 </div>
 
-<script>
-const hamburger = document.getElementById('hamburger');
-const navLinks = document.getElementById('navLinks');
+<footer>
+    <p>&copy; 2025 TerraCast. Predict today to protect tomorrow.</p>
+    <div class="social-links">
+        <a href="https://github.com/lurodriguezzz/CS2-Coach" target="_blank" aria-label="GitHub">
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg"
+                 alt="GitHub" width="40" height="40"
+                 style="transition: 0.2s; filter: brightness(0) invert(0.8);">
+        </a>
+        <a href="https://www.linkedin.com/in/lucas-rodr%C3%ADguez-b8a93b254/" target="_blank" aria-label="LinkedIn">
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg"
+                 alt="LinkedIn" width="40" height="40"
+                 style="transition: 0.2s; filter: brightness(0) invert(0.8);">
+        </a>
+        <a href="https://www.instagram.com/terracastproducts/" target="_blank" aria-label="Instagram">
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg"
+                 alt="Instagram" width="40" height="40"
+                 style="transition: 0.2s; filter: brightness(0) invert(0.8);">
+        </a>
+    </div>
+</footer>
 
+<script>
+/* Navbar: exatamente como no primeiro arquivo */
+const hamburger = document.getElementById('hamburger');
+const navLinks   = document.getElementById('navLinks');
 hamburger.addEventListener('click', () => {
     navLinks.classList.toggle('active');
 });
 
-// Define link ativo
-const links = navLinks.querySelectorAll('a');
-links.forEach(link => {
-    if (link.href === window.location.href) {
-        link.classList.add('active');
-    }
-});
-
-// Form loading
+/* Loading do formulário */
 const form = document.getElementById('form-analise');
 const loading = document.getElementById('loading');
 const btn = document.getElementById('btn-analise');
-
 form.addEventListener('submit', function () {
     loading.style.display = 'block';
     btn.disabled = true;

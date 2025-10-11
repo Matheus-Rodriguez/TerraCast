@@ -1,291 +1,46 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TerraCast - Model</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
-    <style>
-        body {
-            margin: 0;
-            background-color: #222;
-            font-family: 'Poppins', sans-serif;
-            color: white;
-            font-size: 22px;
-            line-height: 1.6;
-        }
 
-        /* Navbar */
-        .navbar {
-            display: flex;
-            align-items: center;
-            height: 80px;
-            background-color: #222;
-            padding: 0 15px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+{% block title %}Model - TerraCast{% endblock %}
 
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+{% block content %}
+<h1>📊 ROC vs. PR Curve: Key Differences</h1>
 
-        .logo-container img {
-            height: 45px;
-            width: auto;
-        }
+<figure>
+    <img src="{% static 'image2.png' %}" alt="ROC vs PR Curve 1" class="chart-image" />
+    <figcaption>Figure 1: Forecast of armed conflict 3 months in advance.</figcaption>
+</figure>
 
-        .logo-container h1 {
-            margin: 0;
-            font-size: 24px;
-            font-weight: bold;
-            color: white;
-        }
+<figure>
+    <img src="{% static 'image3.png' %}" alt="ROC vs PR Curve 2" class="chart-image" />
+    <figcaption>Figure 2: Forecast of any violence 3 months in advance.</figcaption>
+</figure>
 
-        /* Links da navbar */
-        .nav-links {
-            display: flex;
-            flex: 1;
-            justify-content: space-between;
-            align-items: center;
-        }
+<figure>
+    <img src="{% static 'image4.png' %}" alt="ROC vs PR Curve 3" class="chart-image" />
+    <figcaption>Figure 3: Forecast of armed conflict 12 months in advance.</figcaption>
+</figure>
 
-        .nav-links a {
-            flex: 1;
-            text-align: center;
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 20px;
-            padding: 5px 0;
-            position: relative;
-        }
+<figure>
+    <img src="{% static 'image5.png' %}" alt="ROC vs PR Curve 4" class="chart-image" />
+    <figcaption>Figure 4: Forecast of any violence 12 months in advance.</figcaption>
+</figure>
 
-        .nav-links a::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -4px;
-            width: 0;
-            height: 2px;
-            background-color: #ff6666;
-            transition: width 0.3s ease;
-        }
+<h2>ROC Curve</h2>
+<ul>
+    <li>📈 Plots: True Positive Rate vs. False Positive Rate</li>
+    <li>🎯 Best for: Balanced datasets</li>
+    <li>📉 AUC baseline: 0.5</li>
+    <li>🧠 Measures: Overall model performance</li>
+</ul>
 
-        .nav-links a:hover::after {
-            width: 50%;
-            left: 25%;
-        }
+<h2>PR Curve</h2>
+<ul>
+    <li>📈 Plots: Precision vs. Recall</li>
+    <li>🎯 Best for: Imbalanced datasets</li>
+    <li>📉 AUC baseline: Depends on positive class frequency</li>
+    <li>🧠 Measures: Positive class performance</li>
+</ul>
 
-        /* Link ativo - vermelho sem barra inferior */
-        .nav-links a.active {
-            color: #ff6666;
-        }
-        .nav-links a.active::after {
-            width: 0;
-        }
-
-        /* Hamburger */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 5px;
-        }
-
-        .hamburger div {
-            width: 25px;
-            height: 3px;
-            background-color: white;
-        }
-
-        /* Conteúdo */
-        .content {
-            padding: 60px 80px;
-            line-height: 2.2;
-            min-height: 100vh;
-            max-width: 1000px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        h1 {
-            color: #ff6666;
-            font-size: clamp(2rem, 5vw, 3rem);
-            margin-bottom: 40px;
-        }
-
-        h2 {
-            color: #ff6666;
-            font-size: clamp(1.5rem, 4vw, 2.2rem);
-            margin-top: 60px;
-            margin-bottom: 20px;
-        }
-
-        p, li {
-            font-size: clamp(1rem, 2.5vw, 1.4rem);
-        }
-
-        ul {
-            list-style-type: none;
-            padding-left: 0;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        li {
-            margin-bottom: 20px;
-        }
-
-        .tip {
-            margin-top: 50px;
-            font-weight: bold;
-            color: #ff6666;
-            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
-        }
-
-        figure {
-            margin: 40px auto;
-            max-width: 800px;
-        }
-
-        .chart-image {
-            width: 100%;
-            border-radius: 8px;
-            height: auto;
-        }
-
-        figcaption {
-            margin-top: 10px;
-            font-size: clamp(0.9rem, 2vw, 1.2rem);
-            color: #ccc;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 1024px) {
-            body { font-size: 20px; }
-            .nav-links a { font-size: 18px; }
-        }
-
-        @media (max-width: 768px) {
-            body { font-size: 18px; padding: 0; }
-            h1 { font-size: 2.5rem; }
-            h2 { font-size: 1.8rem; }
-            p, li { font-size: 1.2rem; }
-            .tip { font-size: 1.3rem; }
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                background-color: #222;
-                position: absolute;
-                top: 80px;
-                left: 0;
-                text-align: center;
-                gap: 5px;
-                padding: 10px 0;
-            }
-            .nav-links a { font-size: 16px; padding: 10px 0; flex: none; }
-            .nav-links.active { display: flex; }
-            .hamburger { display: flex; margin-left: auto; }
-        }
-
-        @media (max-width: 480px) {
-            body { font-size: 16px; padding: 0 10px; }
-            h1 { font-size: 2rem; }
-            h2 { font-size: 1.5rem; }
-            p, li { font-size: 1rem; }
-            .tip { font-size: 1.2rem; }
-            .logo-container h1 { font-size: 16px; }
-            .nav-links a { font-size: 14px; }
-        }
-    </style>
-</head>
-<body>
-
-<nav class="navbar">
-    <div class="logo-container">
-        <img src="{% static 'logo.png' %}" alt="Logo TerraCast">
-        <h1>TerraCast</h1>
-    </div>
-    <div class="nav-links" id="navLinks">
-        <a href="{% url 'mapa_violence_3m' %}">Violence 3 months</a>
-        <a href="{% url 'mapa_violence_12m' %}">Violence 12 months</a>
-        <a href="{% url 'mapa_conflict_3m' %}">Conflict 3 months</a>
-        <a href="{% url 'mapa_conflict_12m' %}">Conflict 12 months</a>
-        <a href="{% url 'report' %}">Report</a>
-        <a href="{% url 'model' %}">Model</a>
-        <a href="{% url 'about' %}">About</a>
-    </div>
-    <div class="hamburger" id="hamburger">
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
-</nav>
-
-<div class="content">
-    <h1>📊 ROC vs. PR Curve: Key Differences</h1>
-
-    <figure>
-        <img src="{% static 'image2.png' %}" alt="ROC vs PR Curve 1" class="chart-image" />
-        <figcaption>Figure 1: Forecast of armed conflict 3 months in advance.</figcaption>
-    </figure>
-
-    <figure>
-        <img src="{% static 'image3.png' %}" alt="ROC vs PR Curve 2" class="chart-image" />
-        <figcaption>Figure 2: Forecast of any violence 3 months in advance.</figcaption>
-    </figure>
-
-    <figure>
-        <img src="{% static 'image4.png' %}" alt="ROC vs PR Curve 3" class="chart-image" />
-        <figcaption>Figure 3: Forecast of armed conflict 12 months in advance.</figcaption>
-    </figure>
-
-    <figure>
-        <img src="{% static 'image5.png' %}" alt="ROC vs PR Curve 4" class="chart-image" />
-        <figcaption>Figure 4: Forecast of any violence 12 months in advance.</figcaption>
-    </figure>
-
-    <h2>ROC Curve</h2>
-    <ul>
-        <li>📈 Plots: True Positive Rate vs. False Positive Rate</li>
-        <li>🎯 Best for: Balanced datasets</li>
-        <li>📉 AUC baseline: 0.5</li>
-        <li>🧠 Measures: Overall model performance</li>
-    </ul>
-
-    <h2>PR Curve</h2>
-    <ul>
-        <li>📈 Plots: Precision vs. Recall</li>
-        <li>🎯 Best for: Imbalanced datasets</li>
-        <li>📉 AUC baseline: Depends on positive class frequency</li>
-        <li>🧠 Measures: Positive class performance</li>
-    </ul>
-
-    <div class="tip">✅ Tip:<br>Use ROC for general evaluation, PR when positives are rare.</div>
-</div>
-
-<script>
-const hamburger = document.getElementById('hamburger');
-const navLinks = document.getElementById('navLinks');
-
-hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-});
-
-// Marca link ativo
-const links = navLinks.querySelectorAll('a');
-links.forEach(link => {
-    if (link.href === window.location.href) {
-        link.classList.add('active');
-    }
-});
-</script>
-</body>
-</html>
+<div class="tip">✅ Tip:<br>Use ROC for general evaluation, PR when positives are rare.</div>
+{% endblock %}

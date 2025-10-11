@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TerraCast - Predict today to protect tomorrow</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-<link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+<link rel="shortcut icon" href="{% static 'favicon2.png' %}" type="image/png" sizes="48x48">
 <style>
 body {
     margin: 0;
@@ -31,12 +31,21 @@ body {
 .logo-container {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 0px;
+}
+
+.logo-container a {
+    display: flex;
+    align-items: center;
+    gap: 0px;
+    text-decoration: none;
+    color: inherit;
 }
 
 .logo-container img {
     height: 45px;
     width: auto;
+    margin-right: -10px;
 }
 
 .logo-container h1 {
@@ -64,7 +73,6 @@ body {
     position: relative;
 }
 
-/* Barra inferior no hover */
 .nav-links a::after {
     content: "";
     position: absolute;
@@ -81,7 +89,6 @@ body {
     left: 25%;
 }
 
-/* Link ativo - vermelho, sem barra */
 .nav-links a.active {
     color: #ff6666;
 }
@@ -90,7 +97,6 @@ body {
     width: 0;
 }
 
-/* Hamburger */
 .hamburger {
     display: none;
     flex-direction: column;
@@ -107,7 +113,7 @@ body {
 /* Graph */
 #grafico {
     width: 100%;
-    height: calc(100vh - 80px); /* ocupa a tela menos navbar */
+    height: calc(100vh - 80px);
     min-height: 400px;
     display: flex;
 }
@@ -121,11 +127,32 @@ body {
     height: 100% !important;
 }
 
-/* RESPONSIVE */
-@media (max-width: 1024px) {
-    .nav-links a { font-size: 20px; }
+/* Footer */
+footer {
+    background-color: #111;
+    color: #ccc;
+    text-align: center;
+    padding: 20px 0;
 }
 
+.social-links {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+}
+
+.social-links svg {
+    color: #ff6666;
+    transition: color 0.3s;
+}
+
+.social-links svg:hover {
+    color: #ff9999;
+    cursor: pointer;
+}
+
+/* RESPONSIVE */
 @media (max-width: 768px) {
     .nav-links {
         display: none;
@@ -169,8 +196,10 @@ body {
 <body>
 <nav class="navbar">
     <div class="logo-container">
-        <img src="{% static 'logo.png' %}" alt="Logo TerraCast">
-        <h1>TerraCast</h1>
+        <a href="{% url 'home' %}">
+            <img src="{% static 'logo.png' %}" alt="Logo TerraCast" style="width: 80px; height: auto;">
+            <h1>TerraCast</h1>
+        </a>
     </div>
     <div class="nav-links" id="navLinks">
         <a href="{% url 'mapa_violence_3m' %}" class="{% if request.resolver_match.url_name == 'mapa_violence_3m' %}active{% endif %}">Violence 3 months</a>
@@ -191,6 +220,27 @@ body {
 <div id="grafico">
     {{ plot_html|safe }}
 </div>
+
+<footer>
+    <p>&copy; 2025 TerraCast. Predict today to protect tomorrow.</p>
+    <div class="social-links">
+        <a href="https://github.com/lurodriguezzz/CS2-Coach" target="_blank">
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg"
+                 alt="GitHub" width="40" height="40"
+                 style="transition: 0.2s; filter: brightness(0) invert(0.8);">
+        </a>
+        <a href="https://www.linkedin.com/in/lucas-rodr%C3%ADguez-b8a93b254/" target="_blank">
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg"
+                 alt="LinkedIn" width="40" height="40"
+                 style="transition: 0.2s; filter: brightness(0) invert(0.8);">
+        </a>
+        <a href="https://www.instagram.com/terracastproducts/" target="_blank">
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg"
+                 alt="Instagram" width="40" height="40"
+                 style="transition: 0.2s; filter: brightness(0) invert(0.8);">
+        </a>
+    </div>
+</footer>
 
 <script>
 const hamburger = document.getElementById('hamburger');
