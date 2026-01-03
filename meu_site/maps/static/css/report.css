@@ -1,0 +1,106 @@
+
+.report-page #loading {
+    display: none;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ff6666;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.report-page .content {
+    padding: 40px 20px;
+    flex: 1;
+    max-width: 1000px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.report-page h1 {
+    color: #ff6666;
+    font-size: 42px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.report-page p.intro-text {
+    max-width: 800px;
+    margin: 0 auto 40px auto;
+    font-size: 20px;
+    color: #ccc;
+    text-align: center;
+    line-height: 1.6;
+}
+
+.report-page form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.report-page input[type="text"] {
+    padding: 10px 12px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    margin-top: 10px;
+    width: 300px;
+    max-width: 80%;
+    text-align: center;
+}
+
+.report-page button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #ff6666;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.report-page button:hover {
+    background-color: #e64e4e;
+}
+
+.report-page .label {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #ccc;
+    text-align: center;
+}
+
+.report-page #loading {
+    display: none;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ff6666;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.report-page .result-html {
+    background-color: #111;
+    color: #eee;
+    border: 1px solid #555;
+    border-radius: 8px;
+    padding: 16px;
+    max-height: 500px;
+    overflow-y: auto;
+    white-space: normal;
+    font-size: 16px;
+}
+
+@media (max-width: 768px) {
+    .report-page h1 { font-size: 32px; }
+    .report-page p.intro-text { font-size: 18px; }
+    .report-page .nav-links a { font-size: 18px; }
+}
+
+@media (max-width: 480px) {
+    .report-page h1 { font-size: 26px; }
+    .report-page p.intro-text { font-size: 16px; }
+    .report-page .nav-links a { font-size: 16px; }
+}

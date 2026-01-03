@@ -1,0 +1,26 @@
+{% extends "maps/base.html" %}
+{% load static %}
+
+{% block title %}Terracast - Analysis Result{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/resposta.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <h1>Analysis Result</h1>
+
+    <div class="result-html">
+        {{ resposta|safe }}
+    </div>
+
+    <a class="voltar" href="{% url 'report' %}">← New Analysis</a><br>
+
+    {% if resposta and "ERROR" not in resposta %}
+        <a href="{% url 'baixar_pdf' %}" class="btn-pdf" target="_blank" rel="noopener noreferrer">
+            📄 Download PDF Report
+        </a>
+    {% endif %}
+</div>
+{% endblock content%}

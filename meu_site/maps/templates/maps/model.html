@@ -1,0 +1,54 @@
+{% extends "maps/base.html" %}
+{% load static %}
+
+{% block title %}Terracast - Model{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/model.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="model-page">
+
+    <h1>📊 ROC vs. PR Curve: Key Differences</h1>
+
+    <figure>
+        <img src="{% static 'images/image2.png' %}" alt="ROC vs PR Curve 1" class="chart-image" />
+        <figcaption>Figure 1: Forecast of armed conflict 3 months in advance.</figcaption>
+    </figure>
+
+    <figure>
+        <img src="{% static 'images/image3.png' %}" alt="ROC vs PR Curve 2" class="chart-image" />
+        <figcaption>Figure 2: Forecast of any violence 3 months in advance.</figcaption>
+    </figure>
+
+    <figure>
+        <img src="{% static 'images/image4.png' %}" alt="ROC vs PR Curve 3" class="chart-image" />
+        <figcaption>Figure 3: Forecast of armed conflict 12 months in advance.</figcaption>
+    </figure>
+
+    <figure>
+        <img src="{% static 'images/image5.png' %}" alt="ROC vs PR Curve 4" class="chart-image" />
+        <figcaption>Figure 4: Forecast of any violence 12 months in advance.</figcaption>
+    </figure>
+
+    <h2>ROC Curve</h2>
+    <ul>
+        <li>📈 Plots: True Positive Rate vs. False Positive Rate</li>
+        <li>🎯 Best for: Balanced datasets</li>
+        <li>📉 AUC baseline: 0.5</li>
+        <li>🧠 Measures: Overall model performance</li>
+    </ul>
+
+    <h2>PR Curve</h2>
+    <ul>
+        <li>📈 Plots: Precision vs. Recall</li>
+        <li>🎯 Best for: Imbalanced datasets</li>
+        <li>📉 AUC baseline: Depends on positive class frequency</li>
+        <li>🧠 Measures: Positive class performance</li>
+    </ul>
+
+    <div class="tip">✅ Tip:<br>Use ROC for general evaluation, PR when positives are rare.</div>
+
+    </div>
+{% endblock content%}

@@ -1,0 +1,55 @@
+.content {
+    padding: 60px 10vw;
+    text-align: center;
+    flex: 1;
+}
+
+.content h1 {
+    color: #ff6666;
+    margin-bottom: 40px;
+    font-size: clamp(2rem, 6vw, 4rem);
+}
+
+.result-html {
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    line-height: 1.8;
+    margin: 1rem 0;
+}
+
+.result-html pre,
+.result-html code {
+    background: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    white-space: normal !important;
+    font-family: inherit !important;
+    font-size: inherit !important;
+    color: inherit !important;
+}
+
+a.voltar {
+    display: inline-block;
+    margin-top: 1.2rem;
+    color: #ff6666;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+}
+
+.btn-pdf {
+    display: inline-block;
+    margin-top: 1.2rem;
+    padding: 0.7rem 1.4rem;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    background-color: #ff6666;
+    color: white;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-pdf:hover {
+    background-color: #e64e4e;
+}
+

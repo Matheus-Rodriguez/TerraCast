@@ -1,0 +1,37 @@
+.about-page {
+    padding: 60px 10vw;
+    text-align: center;
+    flex: 1;
+}
+
+.about-page h1 {
+    color: #ff6666;
+    margin-bottom: 40px;
+    font-size: clamp(2rem, 6vw, 4rem);
+}
+
+.about-page h2 {
+    color: #ff6666;
+    margin: 60px 0 20px;
+    font-size: clamp(1.5rem, 4vw, 3rem);
+}
+
+.about-page p {
+    max-width: 900px;
+    margin: 0 auto 30px;
+    text-align: center;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+}
+
+.about-page ul {
+    list-style-type: disc;
+    padding-left: 5vw;
+    max-width: 900px;
+    margin: 0 auto 30px;
+}
+
+.about-page ul li {
+    text-align: left;
+    margin-bottom: 15px;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+}

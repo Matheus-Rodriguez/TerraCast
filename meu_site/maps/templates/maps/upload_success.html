@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Complete !</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon" sizes="64x64">
+    <link rel="stylesheet" href="{% static 'css/success.css' %}">
+</head>
+<body>
+    <div class="card">
+        <h1>Upload Complete !</h1>
+        <p>The file<strong>{{ filename }}</strong> was sent with success.</p>
+        <a href="{% url 'upload' %}">Send other file</a>
+    </div>
+</body>
+</html>

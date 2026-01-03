@@ -1,0 +1,44 @@
+{% extends "maps/base.html" %}
+{% load static %}
+
+{% block title %}Terracast - About{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="about-page">
+	<h1>About TerraCast</h1>
+	<p><em>Predict today to protect tomorrow.</em></p>
+
+	<p>TerraCast is a predictive intelligence platform specialized in 
+	anticipating armed conflicts and geopolitical instabilities on a global 
+	scale. Using AI technologies, statistical modeling, and machine 
+	learning, we transform complex data into actionable strategic insights.</p>
+
+	<p>Our system analyzes thousands of indicators — from economic, social, 
+	and political data to environmental and behavioral variables — to 
+	identify risk patterns and forecast conflict scenarios up to 12 months 
+	in advance. These predictions assist governments, organizations, and 
+	humanitarian agencies in making informed decisions, reducing 
+	uncertainties, and saving lives.</p>
+
+	<h2>Our Mission</h2>
+	<p>To anticipate crises before they become tragedies and provide data-driven intelligence for a safer, transparent world.</p>
+
+	<h2>Our Vision</h2>
+	<p>To be the world’s leading reference in predictive geopolitical risk 
+	technology, contributing to conflict prevention and sustainable peace 
+	strategies.</p>
+
+	<h2>Our Differentials</h2>
+	<ul>
+	    <li>Proprietary AI models calibrated with historical data and updated.</li>
+	    <li>Global coverage, with subnational forecasts and interactive risk maps.</li>
+	    <li>Multidisciplinary team in data science, politics, and security.</li>
+	    <li>Integration with open sources, financial indexes, media, and generative AI for automated reports.</li>
+	</ul>
+</div>
+{% endblock content %}
+

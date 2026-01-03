@@ -1,0 +1,105 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #222;
+    color: white;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.upload-container {
+    background-color: #111;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+}
+
+.upload-container h1 {
+    color: #ff6666;
+    margin-bottom: 25px;
+    font-size: 28px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input[type=file] {
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: #333;
+    color: #fff;
+}
+
+input[type=file]::file-selector-button {
+    background-color: #ff6666;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: 0.2s;
+}
+
+input[type=file]::file-selector-button:hover {
+    background-color: #e64e4e;
+}
+
+button {
+    padding: 12px;
+    background-color: #ff6666;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.2s;
+}
+
+button:hover {
+    background-color: #e64e4e;
+}
+
+.mensagem {
+    margin-top: 20px;
+    padding: 12px;
+    border-radius: 8px;
+    background-color: #1a1a1a;
+    color: #00ff99;
+    font-weight: bold;
+}
+
+.links {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.links a {
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    background-color: #555;
+    color: white;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.links a:hover {
+    background-color: #333;
+}

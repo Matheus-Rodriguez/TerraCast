@@ -1,0 +1,10 @@
+{% extends "maps/base.html" %}
+{% load static %}
+
+{% block title %}Terracast - Maps{% endblock %}
+
+{% block content %}
+<div id="grafico">
+    {{ plot_html|safe }}
+</div>
+{% endblock %}

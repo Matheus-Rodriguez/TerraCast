@@ -1,0 +1,6 @@
+.plotly .modebar {
+    top: 0 !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    flex-direction: row !important; /* horizontal */
+}

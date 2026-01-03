@@ -1,0 +1,50 @@
+{% extends "maps/base.html" %}
+{% load static %}
+
+{% block title %}Terracast - Report{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/report.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="content report-page">
+    <h1>🤖 Country Report</h1>
+
+    <p class="intro-text">
+        This tool uses artificial intelligence to analyze risks of armed conflict and violence in countries, based on historical data and forecasts for the upcoming months.
+        By entering the ISO code of the desired country, the system generates a detailed report, comparing the predictions with real events that occurred and evaluating data consistency.
+        The goal is to provide a clear and objective view to support political and strategic analyses.
+    </p>
+
+    <form method="POST" id="form-analise">
+        {% csrf_token %}
+        <label class="label" for="codigo_iso">
+            Enter the country ISO code (e.g., COL, BOL, UKR):
+        </label>
+        <input type="text" name="codigo_iso" id="codigo_iso" value="{{ entrada }}">
+        <button type="submit" id="btn-analise">Generate Report</button>
+    </form>
+
+    <div id="loading">Processing report, please wait...</div>
+
+    {% if resposta %}
+        <h2 style="color:#ff6666;text-align:center;">Result:</h2>
+        <div class="result-html">{{ resposta|safe }}</div>
+    {% endif %}
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('form-analise');
+    const loading = document.getElementById('loading');
+    const btn = document.getElementById('btn-analise');
+
+    form.addEventListener('submit', function () {
+        loading.style.display = 'block';
+        btn.disabled = true;
+        btn.textContent = 'Generating...';
+    });
+});
+</script>
+{% endblock %}

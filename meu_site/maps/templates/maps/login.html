@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terracast - Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon" sizes="64x64">
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+<body>
+<div class="login-container">
+    <h1>Admin TerraCast</h1>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="error">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    {% if request.user.is_authenticated %}
+        <p>You are log in as <strong>{{ request.user.username }}</strong>.</p>
+        <div class="button-group">
+            <a href="{% url 'upload' %}" class="btn">Upload</a>
+            <a href="{% url 'home' %}" class="btn">Home</a>
+            <a href="{% url 'logout' %}" class="btn">Leave</a>
+        </div>
+    {% else %}
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Enter</button>
+        </form>
+        <a href="{% url 'home' %}">Back to Home</a>
+    {% endif %}
+</div>
+</body>
+</html>
