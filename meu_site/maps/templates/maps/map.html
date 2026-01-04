@@ -3,8 +3,13 @@
 
 {% block title %}Terracast - Maps{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/map.css' %}">
+{% endblock %}
+
 {% block content %}
 <div id="grafico">
     {{ plot_html|safe }}
 </div>
 {% endblock %}
+
