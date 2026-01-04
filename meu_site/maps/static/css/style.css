@@ -1,4 +1,4 @@
-
+/* ================== ESTILO BASE ================== */
 body {
     margin: 0;
     background-color: #222;
@@ -11,6 +11,7 @@ body {
     min-height: 100vh; 
 }
 
+/* Navbar */
 .navbar {
     display: flex;
     align-items: center;
@@ -23,10 +24,11 @@ body {
     z-index: 1000;
 }
 
+/* Logo e texto da logo */
 .logo-container {
     display: flex;
     align-items: center;   
-    gap: 10px;             
+    gap: 2px;             
 }
 
 .logo-container a {
@@ -37,42 +39,72 @@ body {
 }
 
 .logo-container img {
-    height: 50px;         
+    height: 20px; 
     width: auto;
 }
 
 .logo-container h1 {
     margin: 0;
-    font-size: clamp(20px, 2vw, 28px); 
+    font-size: clamp(14px, 1.5vw, 22px); /* reduzido de 20-28px */
     font-weight: bold;
 }
 
+/* Links da navbar */
+.nav-links {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
+}
 
-.nav-links { display: flex; flex: 1; justify-content: space-between; align-items: center; }
 .nav-links a {
     flex: 1;
     text-align: center;
     color: white;
     text-decoration: none;
     font-weight: bold;
-    font-size: clamp(14px, 2vw, 20px);
+    font-size: clamp(14px, 1.5vw, 18px); 
     padding: 5px 0;
     position: relative;
 }
+
 .nav-links a::after {
     content: "";
     position: absolute;
-    left: 0; bottom: -4px;
-    width: 0; height: 2px;
+    left: 0; 
+    bottom: -4px;
+    width: 0; 
+    height: 2px;
     background-color: #ff6666;
     transition: width 0.3s ease;
 }
-.nav-links a:hover::after { width: 50%; left: 25%; }
-.nav-links a.active { color: #ff6666; }
-.nav-links a.active::after { width: 0; }
 
-.hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
-.hamburger div { width: 25px; height: 3px; background-color: white; }
+.nav-links a:hover::after { 
+    width: 50%; 
+    left: 25%; 
+}
+
+.nav-links a.active { 
+    color: #ff6666; 
+}
+
+.nav-links a.active::after { 
+    width: 0; 
+}
+
+/* Hamburger menu */
+.hamburger { 
+    display: none; 
+    flex-direction: column; 
+    cursor: pointer; 
+    gap: 5px; 
+}
+
+.hamburger div { 
+    width: 25px; 
+    height: 3px; 
+    background-color: white; 
+}
 
 /* Footer */
 footer {
@@ -87,6 +119,7 @@ footer {
     align-items: center;
     justify-content: center;
 }
+
 footer p {
     margin: 0 0 10px 0;
     width: 100%;
@@ -94,6 +127,7 @@ footer p {
     text-align: center;
     font-size: clamp(0.8rem, 1.2vw, 1rem);
 }
+
 .social-links {
     margin-top: 10px;
     display: flex;
@@ -101,15 +135,18 @@ footer p {
     align-items: center;
     gap: 20px;
 }
+
 .social-links img {
     transition: 0.2s;
     filter: brightness(0) invert(0.8);
 }
+
 .social-links img:hover {
     filter: brightness(1) invert(0.9);
     transform: scale(1.1);
 }
 
+/* ================== RESPONSIVO ================== */
 @media (max-width: 768px) {
     .nav-links {
         display: none;
@@ -133,8 +170,8 @@ footer p {
 }
 
 @media (max-width: 480px) {
-    .logo-container h1 { font-size: 18px; }
-    .nav-links a { font-size: 16px; }
+    .logo-container h1 { font-size: 16px; }
+    .nav-links a { font-size: 14px; }
     footer p { font-size: 14px; margin-bottom: 8px; }
     .social-links { gap: 12px; }
     .social-links img { width: 30px; height: 30px; }
@@ -147,8 +184,10 @@ footer p {
     }
 }
 
+/* Conteúdo principal */
 .content {
     padding: 60px 10vw;
     text-align: center;
     flex: 1;
 }
+
