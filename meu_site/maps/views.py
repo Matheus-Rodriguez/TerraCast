@@ -88,12 +88,11 @@ def mapa_plotly(request, filename=None):
         paper_bgcolor='#222',
         plot_bgcolor='#222',
         font_color='white',
-        margin=dict(l=0, r=0, t=30, b=0),
+        margin=dict(l=0, r=0, t=0, b=0),
         autosize=True,
-        height=900,
         coloraxis_colorbar=dict(
             title='Risk',
-            tickfont=dict(size=12, color='white')
+            tickfont=dict(size=12, color='white'),
         )
     )
 
