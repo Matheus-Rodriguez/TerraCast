@@ -28,8 +28,8 @@ SECRET_KEY = 'django-insecure-5u_kg)2373oj68t0y2sr0vq&0vexl!uc)4a%eqxtow&foh(v1-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
-#ALLOWED_HOSTS = ['terra4cast.com', 'www.terra4cast.com']
+#ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['terra4cast.com', 'www.terra4cast.com']
 
 
 # Application definition
