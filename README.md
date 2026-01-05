@@ -1,95 +1,94 @@
 # TerraCast
 
 <p align="center">
-  <img src="assets/logo.png" alt="Logo TerraCast" width="500">
+  <img src="assets/logo.png" alt="TerraCast Logo" width="500">
 </p>
 
 [![Python Version](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/)
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA-lightgrey.svg)](LICENSE)
 
+---
+
+## 📌 Description
+
+**TerraCast** is a predictive intelligence platform specialized in anticipating **armed conflicts and geopolitical instability** on a global scale.  
+By leveraging advanced **Artificial Intelligence**, statistical modeling, and **machine learning**, we transform complex data into actionable strategic insights.
+
+Our system analyzes thousands of indicators — economic, social, political, environmental, and behavioral — to identify **risk patterns** and forecast conflict scenarios up to **12 months in advance**.  
+These forecasts support governments, international organizations, security firms, and humanitarian agencies in informed decision-making, reducing uncertainty and helping save lives.
 
 ---
 
-## 📌 Descrição
+## 🚀 Mission
 
-**TerraCast** é uma plataforma de inteligência preditiva especializada em antecipar **conflitos armados e instabilidades geopolíticas** em escala global.  
-Utilizando tecnologias avançadas de **Inteligência Artificial**, modelagem estatística e **machine learning**, transformamos dados complexos em insights estratégicos acionáveis.
-
-Nosso sistema analisa milhares de indicadores — econômicos, sociais, políticos, ambientais e comportamentais — para identificar **padrões de risco** e prever cenários de conflito com até **12 meses de antecedência**.  
-Essas previsões auxiliam governos, organizações internacionais, empresas de segurança e agências humanitárias na tomada de decisões informadas, reduzindo incertezas e salvando vidas.
+Anticipate crises before they turn into tragedies.  
+Deliver data-driven intelligence to promote a **safer, more transparent, and better-prepared world**.
 
 ---
 
-## 🚀 Missão
+## 🌎 Vision
 
-Antecipar crises antes que se tornem tragédias.  
-Fornecer inteligência baseada em dados para promover um mundo **mais seguro, transparente e preparado**.
-
----
-
-## 🌎 Visão
-
-Ser referência mundial em tecnologia de **risco geopolítico preditivo**, contribuindo para **prevenção de conflitos** e construção de estratégias de **paz sustentável**.
+To become a global reference in **predictive geopolitical risk technology**, contributing to **conflict prevention** and the development of **sustainable peace strategies**.
 
 ---
 
-## ✨ Diferenciais
+## ✨ Differentiators
 
-- Modelos proprietários de IA calibrados com dados históricos e atualizados.  
-- Equipe multidisciplinar, com pesquisadores em ciência de dados, política internacional e segurança.  
-- Integração com fontes abertas, índices financeiros, mídias e IA generativa para **produção automatizada de relatórios**.
-
----
-
-## 🛠️ Funcionalidades da Plataforma
-
-- Mapas interativos de risco para **violência e conflito** em 3 e 12 meses.  
-- Relatórios automatizados sobre previsões de conflito e violência.  
-- Modelos preditivos atualizados constantemente com novas fontes de dados.  
+- Proprietary AI models calibrated with historical and continuously updated data.  
+- A multidisciplinary team with expertise in data science, international politics, and security.  
+- Integration with open sources, financial indices, media, and generative AI for **automated report generation**.
 
 ---
 
-## 🏠 Página Inicial / Home
+## 🛠️ Platform Features
 
-Ao acessar a plataforma TerraCast, você será recebido com um **mapa interativo de risco global**, destacando os níveis de violência e conflito em diferentes países.  
+- Interactive risk maps for **violence and conflict** at 3- and 12-month horizons.  
+- Automated reports on conflict and violence forecasts.  
+- Predictive models continuously updated with new data sources.
 
-![Mapa de Risco Global](assets/home.png)
+---
 
-### 🔹 Como interpretar o mapa
+## 🏠 Home Page
 
-- **Cores escuras (vermelho intenso)** → alto risco de conflito ou violência  
-- **Cores claras (vermelho claro / branco)** → baixo risco ou estabilidade  
-- **Legenda lateral** → indica valores de risco de 0 (baixo) a 1 (alto)
+When accessing the TerraCast platform, users are greeted with an **interactive global risk map**, highlighting levels of violence and conflict across countries.
 
-### 🔹 Funcionalidades principais da Home
+![Global Risk Map](assets/home.png)
 
-- Visualização global do risco atual para **3 meses** e **12 meses**  
-- Navegação entre **Violência** e **Conflito** com filtros interativos  
-- Atualização automática dos dados conforme novas previsões são processadas  
-- Acesso rápido às demais seções:  
-  - **Report** → relatórios detalhados  
-  - **Model** → informações sobre os modelos preditivos  
-  - **About** → informações sobre a missão, visão e equipe
+### 🔹 How to interpret the map
 
-> A página inicial serve como ponto de partida para explorar os mapas de risco e obter insights estratégicos de maneira visual e intuitiva.
+- **Darker colors (deep red)** → high risk of conflict or violence  
+- **Lighter colors (light red / white)** → low risk or stability  
+- **Side legend** → indicates risk values from 0 (low) to 1 (high)
+
+### 🔹 Main Home features
+
+- Global visualization of current risk for **3 months** and **12 months**  
+- Navigation between **Violence** and **Conflict** with interactive filters  
+- Automatic data updates as new forecasts are processed  
+- Quick access to other sections:  
+  - **Report** → detailed reports  
+  - **Model** → predictive model information  
+  - **About** → mission, vision, and team information
+
+> The home page serves as the starting point for exploring risk maps and obtaining strategic insights in a visual and intuitive way.
 
 ---
 
 ## 📄 Report
 
-A aba Report do TerraCast permite gerar análises detalhadas sobre o risco de conflitos armados e violência em diferentes países, utilizando inteligência artificial e dados históricos. O objetivo é fornecer uma visão objetiva e consistente para apoiar análises políticas e estratégicas.
+The TerraCast Report tab allows users to generate detailed analyses of armed conflict and violence risk across different countries, using artificial intelligence and historical data. The goal is to provide an objective and consistent perspective to support political and strategic analysis.
 
-![Tela da aba Report mostrando relatório gerado](assets/report.png)
+![Report tab showing generated report](assets/report.png)
 
-### 🔹 A funcionalidade principal
+### 🔹 Core functionality
 
-Geração de Relatórios Personalizados: Ao inserir o código ISO de um país (por exemplo, COL para Colômbia, BOL para Bolívia ou UKR para Ucrânia), o sistema cria um relatório detalhado que compara previsões com eventos reais ocorridos, avaliando a consistência dos dados, utilizando-se da tecnologia do ChatGPT.
+**Custom Report Generation**: By entering a country’s ISO code (for example, COL for Colombia, BOL for Bolivia, or UKR for Ukraine), the system generates a detailed report comparing forecasts with real-world events, assessing data consistency using ChatGPT technology.
 
-### 🔹 Download do relatório
+### 🔹 Report download
 
-![Tela mostrando botão de download do relatório](assets/download.png)
+![Screen showing report download button](assets/download.png)
 
-Após gerado o relatório, o usuário pode baixar em sua máquina o texto gerado pelo ChatGPT, pois uma vez feita a análise, ela será perdida no caso de um novo relatório a ser requisitado. Basta apertar o botão **"Baixar relatório em PDF"**.
+Once the report is generated, users can download the text produced by ChatGPT to their local machine. Since the analysis is not stored, it will be lost if a new report is requested. Simply click the **"Download report as PDF"** button.
 
 ---
 
@@ -102,3 +101,4 @@ Após gerado o relatório, o usuário pode baixar em sua máquina o texto gerado
 </p>
 
 This project is licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](LICENSE).
+
